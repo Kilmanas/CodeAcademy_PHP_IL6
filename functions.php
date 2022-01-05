@@ -18,19 +18,37 @@
 //function getPriceWithTax($price){
 //    return $price * 1.21;
 //}
-$userEmail = 'labas@krabas.lt';
-function clearEmail($email){
-    $emailLowercases = strtolower($email);
-    return trim($emailLowercases);
+//$userEmail = 'labas@krabas.lt';
+//function clearEmail($email){
+//    $emailLowercases = strtolower($email);
+//    return trim($emailLowercases);
+//}
+//function isEmailValid($email){
+//    if (strpos($email, '@')){
+//    return true;
+//    }
+//    return false;
+//}
+//if(isEmailValid($userEmail)){
+//    echo clearEmail($userEmail);
+//}else{
+//    echo 'Emailas nevalidus';
+//}
+
+//$name = 'Martynas';
+//$surname = 'Kilmanas';
+//
+//
+//function getNickName($name, $surName) {
+//    return strtolower(substr($name, 0, 3).substr($surName, 0, 3)).rand(1,100);
+//}
+//
+//echo getNickName($name, $surname);
+
+$title = 'Jusu antraste';
+$slug =  getSlug($title);
+
+function getSlug($title){
+    return strtolower(str_replace(' ', '-', $title));
 }
-function isEmailValid($email){
-    if (strpos($email, '@')){
-    return true;
-    }
-    return false;
-}
-if(isEmailValid($userEmail)){
-    echo clearEmail($userEmail);
-}else{
-    echo 'Emailas nevalidus';
-}
+echo $slug;
