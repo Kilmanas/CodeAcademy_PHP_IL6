@@ -37,45 +37,49 @@ $email = $_POST['email'];
 $password1 = $_POST['password'];
 $password2 = $_POST['RepPassword'];
 
-function clearEmail($email)
+function isEmailValid($email)
 {
-    $emailLowercases = strtolower($email);
-    return trim($emailLowercases);
-}
-function isEmailValid($email){
-    if (strpos($email, '@')){
-    return true;
+    if (strpos($email, '@')) {
+        return true;
     }
     return false;
 }
-if(isEmailValid($email)){
+
+if (isEmailValid($email)) {
     function getNickName($name, $surname)
     {
         return strtolower(substr($name, 0, 3) . substr($surname, 0, 3));
     }
-}else{
-    echo 'Registration invalid';
+} else {
+    echo 'Email is not valid';
     return;
 }
-function isPasswordValid($password1, $password2 )
+function isPasswordValid($password1, $password2)
 {
     if ($password1 == $password2) {
         return true;
     }
     return false;
 }
-if(isPasswordValid($password1, $password2)){
-    echo 'Name:'.$name;
+
+function clearEmail($email)
+{
+    $emailLowercases = strtolower($email);
+    return trim($emailLowercases);
+}
+
+if (isPasswordValid($password1, $password2)) {
+    echo 'Name:' . $name;
     echo '<br>';
-    echo 'Surname:'.$surname;
+    echo 'Surname:' . $surname;
     echo '<br>';
-    echo 'Email:'.clearEmail($email);
+    echo 'Email:' . clearEmail($email);
     echo '<br>';
-    echo 'Nickname:'.getNickName($name, $surname);
+    echo 'Nickname:' . getNickName($name, $surname);
     echo '<br>';
     echo 'Registration successful';
 
-}else {
-    echo 'Registration invalid';
+} else {
+    echo 'Password does not match';
     return;
 }
