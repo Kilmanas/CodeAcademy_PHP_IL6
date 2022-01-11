@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd5aef50-2ed0-4e31-92c1-a4eedae7efed" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Forms/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Forms/helper.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Forms/login.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Forms/registration.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Forms/users.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shop/add.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shop/added.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shop/helper.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shop/product.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shop/products.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shop/products.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ketvirta.php" beforeDir="false" afterPath="$PROJECT_DIR$/Forms/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Forms/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Forms/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Forms/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Forms/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +32,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="22sJT65bN2l2nRY2QVIPi47v2j2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -43,7 +55,13 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\pamokos\Forms" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Unnamed" type="PhpLocalRunConfigurationType" factoryName="PHP Console" nameIsGenerated="true" path="$PROJECT_DIR$/functions.php">
@@ -62,7 +80,11 @@
       <workItem from="1640621962100" duration="7809000" />
       <workItem from="1641224895475" duration="8365000" />
       <workItem from="1641320993245" duration="4655000" />
-      <workItem from="1641397062004" duration="7653000" />
+      <workItem from="1641397062004" duration="13650000" />
+      <workItem from="1641488092434" duration="3696000" />
+      <workItem from="1641491807540" duration="9378000" />
+      <workItem from="1641829852736" duration="16460000" />
+      <workItem from="1641918381738" duration="48000" />
     </task>
     <servers />
   </component>
@@ -74,7 +96,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

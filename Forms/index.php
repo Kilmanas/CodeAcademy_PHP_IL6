@@ -11,26 +11,25 @@
 <!--            </ul>-->
 <!--        </div>-->
 <div class="content">
-    <h1>Registration</h1>
+    <h2>Prisijungti</h2>
+    <form action="login.php" method="post">
+        <input type="email" name="email" placeholder="vardenis@domenas.lt">
+        <input type="password" name="password" placeholder="******">
+        <input type="submit" value="Prisijungti">
+    </form>
+    <hr>
+    <h2>Registration</h2>
     <!--            <p>me speak no latino</p>-->
-    <form action="functions.php" method="post">
-<!--        <input type="number" name="number1" placeholder="Pirmas skaičius">-->
-<!--        <input type="number" name="number2" placeholder="Antras skaičius">-->
-<!--        <select name="operation">-->
-<!--            <option value="+">sudėtis</option>-->
-<!--            <option value="-">atimtis</option>-->
-<!--            <option value="*">daugyba</option>-->
-<!--            <option value="/">dalyba</option>-->
-<!--        </select>-->
-        <ul>
-            <li><input type="text" name="name" placeholder="Name"></li>
-            <li><input type="text" name="surname" placeholder="Surname"></li>
-            <li><input type="text" name="email" placeholder="Email"></li>
-            <li><input type="text" name="password" placeholder="Password"></li>
-            <li><input type="text" name="RepPassword" placeholder="Repeat Password"></li>
+    <form action="registration.php" method="post">
 
-        </ul>
-        <input type="submit" value="Submit" name="submit"/>
+       <input type="text" name="first_name" placeholder="Vardas"><br>
+        <input type="text" name="last_name" placeholder="Pavarde"><br>
+        <input type="email" name="email" placeholder="El. pastas"><br>
+        <input type="password" name="password1" placeholder="Slaptazodis"><br>
+        <input type="password" name="password2" placeholder="Pakartoti slaptazodi"><br>
+        <Label for="agree_terms">Sutinku su registracijos taisyklemis</Label>
+        <input type="checkbox" name="agree_terms" id="agree_terms"><br><br>
+        <input type="submit" value="Registruotis" />
 
     </form>
 </div>
