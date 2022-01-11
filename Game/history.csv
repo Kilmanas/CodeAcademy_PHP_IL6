@@ -1,0 +1,13 @@
+
+
+rock,scissors,Player
+paper,paper,Lygiosios
+scissors,paper,Player
+scissors,scissors,Lygiosios
+scissors,rock,Computer
+rock,paper,Computer
+rock,paper,Computer
+rock,scissors,Player
+rock,paper,Computer
+rock,scissors,Player
+rock,rock,Lygiosios

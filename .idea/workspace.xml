@@ -4,20 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd5aef50-2ed0-4e31-92c1-a4eedae7efed" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Forms/helper.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Forms/login.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Forms/registration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Forms/users.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shop/add.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shop/added.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shop/helper.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shop/product.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shop/products.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shop/products.php" afterDir="false" />
+    <list default="true" id="bd5aef50-2ed0-4e31-92c1-a4eedae7efed" name="Changes" comment="phpstorm">
+      <change afterPath="$PROJECT_DIR$/Game/core.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Game/helper.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Game/history.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Game/img/paper.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Game/img/rock.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Game/img/scissors.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Game/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Forms/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/Forms/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Forms/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Forms/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,8 +79,15 @@
       <workItem from="1641488092434" duration="3696000" />
       <workItem from="1641491807540" duration="9378000" />
       <workItem from="1641829852736" duration="16460000" />
-      <workItem from="1641918381738" duration="48000" />
+      <workItem from="1641918381738" duration="6866000" />
     </task>
+    <task id="LOCAL−00001" summary="phpstorm">
+      <created>1641918549469</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1641918549469</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,5 +112,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="phpstorm" />
+    <option name="LAST_COMMIT_MESSAGE" value="phpstorm" />
   </component>
 </project>
