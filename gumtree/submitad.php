@@ -17,9 +17,10 @@ if(isset($_POST['create'])){
     $title = $_POST['title'];
     $content = $_POST['content'];
     $price = $_POST['price'];
+    $manufacturer_id = $_POST['manufacturer'];
     $year = $_POST['year'];
 
     $sql = 'INSERT INTO ad (title, description, manufacturer_id, model_id, price, year, type_id, user_id)
-            VALUES("'.$title.'", "'.$content.'", 1, 1, '.$price.', '.$year.', 1, 1)';
+            VALUES("'.$title.'", "'.$content.'", "'.$manufacturer_id.'", 1, '.$price.', '.$year.', 1, 1)';
     $conn->query($sql);
 }

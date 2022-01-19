@@ -1,11 +1,5 @@
 <?php
-function isEmailValid($email)
-{
-    if (strpos($email, '@')) {
-        return true;
-    }
-    return false;
-}
+
 function clearEmail($email)
 {
     $emailLowercases = strtolower($email);
