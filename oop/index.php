@@ -1,38 +1,28 @@
 <?php
 
-include 'FormHelper.php';
-$data1 = [
-    'type' => 'text',
-    'name' => 'name',
-    'placeholder' => 'Vardas'
-];
-$data2 = [
-    'type' => 'text',
-    'name' => 'last_name',
-    'placeholder' => 'Pavardė'
-];
-$data3 = [
-    'type' => 'email',
-    'name' => 'email',
-    'placeholder' => 'Email'
-];
-$data4 = [
-    'type' => 'password',
-    'name' => 'password',
-    'placeholder' => 'Password'
-];
+include 'vendor/autoload.php';
 
-$formLogin = new FormHelper('login.php', 'POST');
-$formRegister = new FormHelper('register.php', 'POST');
-$formRegister->input($data1);
-$formRegister->input($data2);
-$formRegister->input($data3);
-$formRegister->input($data4);
-$formRegister->textArea('comment', 'Komentaras');
+if(isset($_SERVER['PATH_INFO']) && $_SERVER['PATH_INFO'] !== '/'){
+    $path = trim($_SERVER['PATH_INFO'],'/');
+    $path = explode('/',$path);
+    $class = ucfirst($path[0]);
+    $method = $path[1];
+    $class = '\Controller\\'.$class;
+    if(class_exists($class)){
+        $obj = new $class();
+        if(method_exists($obj, $method)){
+            if(isset($path[2])){
+                $obj->$method($path[2]);
+            }else{
+                $obj->$method();
+            }
+        }else{
+            echo '404';
+        }
+    }else{
+        echo '404';
+    }
 
-$formLogin->input($data3);
-$formLogin->input($data4);
-
-echo $formLogin->getForm();
-echo '<br>';
-echo $formRegister->getForm();
+}else{
+    echo 'home page';
+}

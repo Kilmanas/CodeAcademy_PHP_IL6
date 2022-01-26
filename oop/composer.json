@@ -1,0 +1,17 @@
+{
+    "name": "martynas/skelbimai",
+    "description": "just another ad portal",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Kilmanas",
+            "email": "m.kilmanas@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "": "app/code"
+        }
+    },
+    "require": {}
+}
