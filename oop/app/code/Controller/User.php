@@ -4,8 +4,9 @@ namespace Controller;
 use \Helper\FormHelper;
 class User
 {
-    public function show($id){
-        echo 'User controller ID: '. $id;
+    public function show($id)
+    {
+        echo 'User controller ID: ' . $id;
     }
 
     public function register()
@@ -24,17 +25,39 @@ class User
         $form->input([
             'name' => 'password',
             'type' => 'password',
-            'placeholder' => '****'
+            'placeholder' => 'Password'
         ]);
         $form->input([
             'name' => 'password',
             'type' => 'password',
-            'placeholder' => '****'
+            'placeholder' => 'Password'
         ]);
         $form->input([
             'name' => 'create',
             'type' => 'submit',
-            'placeholder' => 'register'
+            'value' => 'register'
+        ]);
+
+        echo $form->getForm();
+    }
+
+    public function login()
+    {
+        $form = new FormHelper('*', 'POST');
+        $form->input([
+            'name' => 'email',
+            'type' => 'email',
+            'placeholder' => 'Email'
+        ]);
+        $form->input([
+            'name' => 'password',
+            'type' => 'password',
+            'placeholder' => 'Password'
+        ]);
+        $form->input([
+            'name' => 'create',
+            'type' => 'submit',
+            'value' => 'login'
         ]);
 
         echo $form->getForm();

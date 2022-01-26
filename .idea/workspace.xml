@@ -6,20 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bd5aef50-2ed0-4e31-92c1-a4eedae7efed" name="Changes" comment="week 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/core.php" beforeDir="false" afterPath="$PROJECT_DIR$/Game/core.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/history.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Game/history.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Game/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/ad.php" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/ad.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/catalog.php" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/catalog.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/parts/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/parts/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/submituser.php" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/submituser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/registration/formhelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/registration/formhelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/registration/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/registration/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subscribe/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/subscribe/registration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subscribe/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/subscribe/users.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oop/app/code/Controller/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/oop/app/code/Controller/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oop/app/code/Model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/oop/app/code/Model/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +53,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="terminal" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -108,7 +96,7 @@
       <workItem from="1642856780297" duration="1249000" />
       <workItem from="1643039593268" duration="3306000" />
       <workItem from="1643044718271" duration="5878000" />
-      <workItem from="1643129243686" duration="17348000" />
+      <workItem from="1643129243686" duration="19268000" />
     </task>
     <task id="LOCAL−00001" summary="phpstorm">
       <created>1641918549469</created>
