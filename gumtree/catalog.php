@@ -18,16 +18,18 @@ $sql = 'SELECT * FROM ad';
 $rez = $conn->query($sql);
 $ads = $rez->fetchAll();
 // nedaryti pabaiga
+    echo '<div class="wrapper">';
 
-echo "<table>";
+    foreach ($ads as $ad) {
+        echo '<div class="content-box">';
+        echo '<div class="title">Title: '.$ad['title'].'</div>';
+        echo '<div class="price">Price: '.$ad['price'].'</div>';
+        echo '<div class="year">Year: '.$ad['year'].'</div>';
+        echo '<a href="http://localhost/pamokos/gumtree/ad.php?id='.$ad['id'].'">More</a>';
+        echo '</div>';
 
-    foreach ($ads as $ad){
-
-    echo "<tr><td>ID</td><td>Title</td><td>Description</td><td>Manufacturer</td><td>Model</td><td>Body type</td><td>Year</td><td>Price</td></tr>
-            <tr><td>" . $ad['id'] . "</td><td>" . $ad['title'] . "</td><td>" . $ad['description'] . "</td><td>" . $ad['manufacturer_id'] . "</td><td>" . $ad['model_id'] . "</td><td>" . $ad['type_id'] . "</td><td>" . $ad['year'] . "</td><td>" . $ad['price'] ."&#8364</td></tr>";
     }
-
-    echo "</table>";
+echo '</div>';
 
 
 

@@ -4,15 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd5aef50-2ed0-4e31-92c1-a4eedae7efed" name="Changes" comment="phpstorm">
-      <change afterPath="$PROJECT_DIR$/Game/core.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/helper.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/history.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/img/paper.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/img/rock.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/img/scissors.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/index.php" afterDir="false" />
+    <list default="true" id="bd5aef50-2ed0-4e31-92c1-a4eedae7efed" name="Changes" comment="week 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/core.php" beforeDir="false" afterPath="$PROJECT_DIR$/Game/core.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/history.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Game/history.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Game/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree/ad.php" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/ad.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree/catalog.php" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/catalog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree/parts/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/parts/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree/submituser.php" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/submituser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration/formhelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/registration/formhelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/registration/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/subscribe/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/subscribe/registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/subscribe/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/subscribe/users.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +31,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -50,11 +65,12 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\pamokos\oop\app\code\Helper" />
       <recent name="C:\xampp\htdocs\pamokos\Forms" />
     </key>
   </component>
@@ -79,7 +95,20 @@
       <workItem from="1641488092434" duration="3696000" />
       <workItem from="1641491807540" duration="9378000" />
       <workItem from="1641829852736" duration="16460000" />
-      <workItem from="1641918381738" duration="6866000" />
+      <workItem from="1641918381738" duration="7728000" />
+      <workItem from="1642002660890" duration="20141000" />
+      <workItem from="1642435081164" duration="923000" />
+      <workItem from="1642441550528" duration="599000" />
+      <workItem from="1642442568942" duration="3000" />
+      <workItem from="1642443128420" duration="121000" />
+      <workItem from="1642451018885" duration="2000" />
+      <workItem from="1642531640846" duration="601000" />
+      <workItem from="1642608030431" duration="14676000" />
+      <workItem from="1642696812215" duration="11197000" />
+      <workItem from="1642856780297" duration="1249000" />
+      <workItem from="1643039593268" duration="3306000" />
+      <workItem from="1643044718271" duration="5878000" />
+      <workItem from="1643129243686" duration="17348000" />
     </task>
     <task id="LOCAL−00001" summary="phpstorm">
       <created>1641918549469</created>
@@ -87,11 +116,20 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1641918549469</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="phpstorm">
+      <created>1641932521682</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1641932521682</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UpdateCopyrightCheckinHandler">
+    <option name="UPDATE_COPYRIGHT" value="true" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -113,6 +151,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="phpstorm" />
-    <option name="LAST_COMMIT_MESSAGE" value="phpstorm" />
+    <MESSAGE value="week 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="week 2" />
   </component>
 </project>

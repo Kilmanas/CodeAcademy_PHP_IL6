@@ -34,7 +34,7 @@ $cities = $rez->fetchAll();
         </select><br>
     <Label for="agree_terms">Agree Terms & Conditions</Label>
         <input type="checkbox" name="agree_terms" id="agree_terms"><br>
-        <input type="submit" value="create" name="create">
+        <input type="submit" value="Create" name="create">
     </form>
 <?php
 include 'parts/footer.php'; ?>

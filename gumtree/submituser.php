@@ -22,8 +22,10 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 if (isPasswordValid($password1, $password2)){
-    $password = hashPassword($password);
+    $password = hashPassword($password1);
     $email = clearEmail($email);
+}else{
+    echo 'Error';
 }
 
 if(isset($_POST['create']) && $_POST['agree_terms']) {
