@@ -1,8 +1,8 @@
 <?php
-
 include 'vendor/autoload.php';
 include 'config.php';
-
+include 'app/code/View/header.php';
+session_start();
 if(isset($_SERVER['PATH_INFO']) && $_SERVER['PATH_INFO'] !== '/'){
     $path = trim($_SERVER['PATH_INFO'],'/');
     $path = explode('/',$path);
@@ -25,5 +25,7 @@ if(isset($_SERVER['PATH_INFO']) && $_SERVER['PATH_INFO'] !== '/'){
     }
 
 }else{
-    echo 'home page';
+    echo '<h2>Titulinis</h2>';
+    print_r($_SESSION);
 }
+?>

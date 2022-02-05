@@ -33,12 +33,6 @@ class DBHelper
         return $this;
     }
 
-    public function where($field, $value, $operator = '=')
-    {
-        $this->sql .= ' WHERE ' . $field . $operator . '"' . $value . '"';
-        return $this;
-    }
-
     public function delete()
     {
         $this->sql .= 'DELETE ';
@@ -56,30 +50,57 @@ class DBHelper
         $this->conn->query($this->sql);
     }
 
-
     public function getOne()
     {
         $rez = $this->conn->query($this->sql);
         $data = $rez->fetchAll();
-        return $data[0];
+        if(!empty($data)){
+            return $data[0];
+        }else{
+            return[];
+        }
+
     }
 
     public function insert($table, $data)
     {
         $this->sql .= 'INSERT INTO ' . $table .
             ' (' . implode(',', array_keys($data)) . ')
-             VALUES ("' . implode('","', $data) . '")';
+            VALUES ("' . implode('","', $data) . '")';
         return $this;
     }
 
     public function update($table, $data)
     {
-        $this->sql .= 'UPDATE ' . $table . 'SET ';
-        foreach ($data as $key -> $value) {
-            $this->sql .= $key . '=' . $value;
+        $this->sql .= 'UPDATE ' . $table . ' SET ';
+        $values = [];
+        foreach ($data as $key => $value) {
+            $values[] = "$key = '$value'";
         }
-        $this->sql .= ';';
+        $this->sql .= implode(',',$values);
         return $this;
     }
 
+    public function limit($number)
+    {
+        $this->sql .= ' LIMIT ' .$number;
+    }
+
+    public function where($field, $value, $operator = '=')
+    {
+        $this->sql .= ' WHERE ' . $field . $operator . '"' . $value . '"';
+        return $this;
+    }
+
+    public function andWhere($field, $value, $operator = '=')
+    {
+        $this->sql .= ' AND ' . $field . $operator . '"' . $value . '"';
+        return $this;
+    }
+
+    public function orWhere($field, $value, $operator = '=')
+    {
+        $this->sql .= ' OR ' . $field . $operator . '"' . $value . '"';
+        return $this;
+    }
 }

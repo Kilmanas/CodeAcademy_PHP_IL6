@@ -4,6 +4,7 @@ namespace Model;
 
 use Helper\DBHelper;
 use Helper\FormHelper;
+use Model\City;
 
 class User
 {
@@ -20,6 +21,14 @@ class User
     private $phone;
 
     private $cityId;
+
+    private $city;
+
+
+    public function getCity()
+    {
+        return $this->city;
+    }
 
     public function getId()
     {
@@ -112,7 +121,18 @@ class User
 
     private function update()
     {
+        $data = [
+            'name' => $this->name,
+            'last_name' => $this->lastName,
+            'email' => $this->email,
+            'password' => $this->password,
+            'phone' => $this->phone,
+            'city_id' => $this->cityId
 
+        ];
+
+        $db = new DBHelper();
+        $db->update('users', $data)->where('id', $this->id)->exec();
     }
 
     public function load($id)
@@ -126,7 +146,11 @@ class User
         $this->email = $data['email'];
         $this->password = $data['password'];
         $this->cityId = $data['city_id'];
+        $city = new City();
+        $this->city = $city->load($this->cityId);
+        return $data;
     }
+
 
     public function delete()
     {
@@ -141,5 +165,14 @@ class User
         $rez = $db->select()->from('users')->where('email', $email)->get();
         return empty($rez);
     }
+
+    public static function checkLoginCredentials($email, $pass)
+    {
+        $db = new DBHelper();
+        $rez = $db->select('id')->from('users')->where('email', $email)->andWhere('password', $pass)->getOne();
+        return isset($rez['id']) ? $rez['id'] : false;
+        }
+
+
 
 }
