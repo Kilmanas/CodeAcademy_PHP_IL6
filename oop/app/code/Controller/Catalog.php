@@ -4,7 +4,6 @@ namespace Controller;
 use Helper\FormHelper;
 use Helper\Url;
 use Model\Manufacturer;
-use Model\City;
 use Model\Model;
 use Model\User as UserModel;
 
@@ -47,6 +46,7 @@ class Catalog
                 $options[$id] = $manufacturer->getManufacturer();
             }
             $form->select(['name' => 'manufacturer_id', 'options' => $options]);
+
             $form->input([
                 'name' => 'price',
                 'type' => 'number',
@@ -55,11 +55,15 @@ class Catalog
             $form->input([
                 'name' => 'year',
                 'type' => 'number',
+                'min' => '1950',
+                'max' => '2022',
+                'step' => '1',
                 'placeholder' => 'Metai'
+
             ]);
 
 
-            echo $form->getForm();
+            return ['page_content' => $form->getForm()];
         }
     }
 }

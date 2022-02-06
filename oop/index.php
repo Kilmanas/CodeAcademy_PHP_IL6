@@ -1,31 +1,45 @@
 <?php
 include 'vendor/autoload.php';
 include 'config.php';
-include 'app/code/View/header.php';
 session_start();
 if(isset($_SERVER['PATH_INFO']) && $_SERVER['PATH_INFO'] !== '/'){
     $path = trim($_SERVER['PATH_INFO'],'/');
     $path = explode('/',$path);
+    if (count($path) < 2) {
+        echo $GLOBALS['twig']->render('404.html.twig', []);
+        exit;
+    }
     $class = ucfirst($path[0]);
     $method = $path[1];
     $class = '\Controller\\'.$class;
-    if(class_exists($class)){
-        $obj = new $class();
-        if(method_exists($obj, $method)){
-            if(isset($path[2])){
-                $obj->$method($path[2]);
-            }else{
-                $obj->$method();
-            }
-        }else{
-            echo '404';
-        }
-    }else{
-        echo '404';
+    if (!class_exists($class)){
+        echo $GLOBALS['twig']->render('404.html.twig', []);
+        exit;
     }
 
-}else{
-    echo '<h2>Titulinis</h2>';
-    print_r($_SESSION);
+    $obj = new $class();
+    if (!method_exists($obj, $method)) {
+        echo $GLOBALS['twig']->render('404.html.twig', []);
+        exit;
+    }
+
+    if (isset($path[2])){
+        $params = $obj->$method($path[2]);
+    } else {
+        $params = $obj->$method();
+    }
+
+    echo $GLOBALS['twig']->render(
+        'layout.html.twig',
+        $params ?? [],
+    );
+
+} else {
+    echo $GLOBALS['twig']->render(
+        'homepage.html.twig',
+        [
+            'session' => $_SESSION,
+        ]
+    );
 }
 ?>

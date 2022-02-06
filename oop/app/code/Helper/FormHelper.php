@@ -24,6 +24,7 @@ class FormHelper
     public function textArea($name, $placeholder = '')
     {
         $this->form .= '<textarea name="' . $name . '">' . $placeholder . '</textarea>';
+        $this->form .= ' <br>';
 
     }
 
@@ -41,6 +42,7 @@ class FormHelper
             $this->form .= ' value="' . $key . '">' . $option . '</option>';
         }
         $this->form .= '</select>';
+        $this->form .= ' <br>';
     }
 
 

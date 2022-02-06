@@ -64,7 +64,9 @@ class User
             'value' => 'register'
         ]);
 
-        echo $form->getForm();
+        return [
+            'page_content' => $form->getForm()
+        ];
     }
 
     public function login()
@@ -86,7 +88,7 @@ class User
             'value' => 'login'
         ]);
 
-        echo $form->getForm();
+        return ['page_content' => $form->getForm()];
     }
 
     public function create()
@@ -169,7 +171,7 @@ class User
                 'value' => 'Atnaujinti'
             ]);
 
-            echo $form->getForm();
+            return ['page_content' => $form->getForm()];
 
         }
     }

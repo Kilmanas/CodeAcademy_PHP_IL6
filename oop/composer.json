@@ -12,5 +12,8 @@
         "psr-4": {
             "": "app/code"
         }
+    },
+    "require": {
+        "twig/twig": "^3.0"
     }
 }

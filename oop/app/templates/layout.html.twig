@@ -1,13 +1,10 @@
-<?php
-use Helper\Url;
-?>
 <html>
 <head>
 <style>
 h1 {text-align: center;}
 h3 {text-align: center;}
 p {text-align: center;}
-div {text-align: center;}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -34,7 +31,7 @@ li a:hover {
 </head>
 <body>
 <div class="header">
-        <ul class="menu" style="list-style-type:none">
+        <ul class="menu">
         <li><a href="index.php">Pagrindinis</a></li>
         <li><a href="">Registruotis</a></li>
         <li><a href="">Prisijungti</a></li>
@@ -42,6 +39,11 @@ li a:hover {
     </ul>
 </div>
 <div class="content">
+{% block content %}
+        {% autoescape false %}
+        {{ page_content }}
+        {% endautoescape %}
+{% endblock %}
 </div>
 </body>
 </html>
