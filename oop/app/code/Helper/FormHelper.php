@@ -45,7 +45,16 @@ class FormHelper
         $this->form .= ' <br>';
     }
 
+    public function selectModel($data)
+    {
+        $this->form .= '<select name="model_id">';
+        foreach ($data as $key => $option) {
+           $this->form .= '<option value="' . $key . '" data-manufacturer-id="' . $option['manufacturerId'] . '">' . $option['model'] . '</option>';
+        }
+        $this->form .= '</select>';
+        $this->form .= ' <br>';
 
+    }
     public function getForm()
     {
         $this->form .= '</form>';

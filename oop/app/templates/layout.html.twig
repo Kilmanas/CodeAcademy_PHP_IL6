@@ -1,10 +1,11 @@
 <html>
 <head>
+<title>{% block title %}vagiu.lt - Didžiausias vogtų automobilių skelbimų portalas Lietuvoje{% endblock %}</title>
+{% block styles %}
 <style>
 h1 {text-align: center;}
 h3 {text-align: center;}
 p {text-align: center;}
-
 ul {
     list-style-type: none;
     margin: 0;
@@ -26,10 +27,13 @@ li a:hover {
     background-color: #111111;
 }
 </style>
-<h1>vagiu.lt</h1>
-<h3>Didžiausias vogtų automobilių skelbimų portalas Lietuvoje</h3>
+{% endblock %}
+{% block scripts %}
+{% endblock %}
 </head>
 <body>
+<h1>vagiu.lt</h1>
+<h3>Didžiausias vogtų automobilių skelbimų portalas Lietuvoje</h3>
 <div class="header">
         <ul class="menu">
         <li><a href="index.php">Pagrindinis</a></li>

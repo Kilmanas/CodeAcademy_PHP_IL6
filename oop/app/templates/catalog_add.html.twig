@@ -1,0 +1,20 @@
+{% extends 'layout.html.twig' %}
+
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        jQuery(function() {
+            $('select[name="manufacturer_id"]').on('change', function() {
+
+
+            let modelSelect = $('select[name="model_id"]');
+            let manufacturerId = $(this).val();
+
+            modelSelect.find('option').hide();
+            modelSelect.find('option[data-manufacturer-id="' + manufacturerId + '"]').show().first().attr('selected', 'selected');
+
+            modelSelect.change();
+        }).change();
+        });
+    </script>
+{% endblock %}

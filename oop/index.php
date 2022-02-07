@@ -29,17 +29,15 @@ if(isset($_SERVER['PATH_INFO']) && $_SERVER['PATH_INFO'] !== '/'){
         $params = $obj->$method();
     }
 
-    echo $GLOBALS['twig']->render(
-        'layout.html.twig',
-        $params ?? [],
-    );
+    $templateDir = __DIR__ . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR;
+    $template = strtolower($path[0] . '_' .$method) . '.html.twig';
+
+    if (!file_exists($templateDir . $template)) {
+        $template = 'layout.html.twig';
+    }
+
+    echo $GLOBALS['twig']->render($template, $params ?? []);
 
 } else {
-    echo $GLOBALS['twig']->render(
-        'homepage.html.twig',
-        [
-            'session' => $_SESSION,
-        ]
-    );
+    echo $GLOBALS['twig']->render('homepage.html.twig', ['session' => $_SESSION]);
 }
-?>

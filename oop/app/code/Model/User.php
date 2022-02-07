@@ -72,7 +72,7 @@ class User
 
     public function setPassword($password)
     {
-        $this->password = $password;
+        $this->password = password_hash($password, null);
     }
 
     public function getPhone()
@@ -149,6 +149,27 @@ class User
         $city = new City();
         $this->city = $city->load($this->cityId);
         return $data;
+    }
+
+    public static function loadByUsername($username): ?User
+    {
+        $db = new DBHelper();
+        $data = $db->select()->from('users')->where('email',$username)->getOne();
+        if (empty($data)) {
+            return null;
+        }
+
+        $user = new User();
+        $user->id = $data['id'];
+        $user->name = $data['name'];
+        $user->lastName = $data['last_name'];
+        $user->phone = $data['phone'];
+        $user->email = $data['email'];
+        $user->password = $data['password'];
+        $user->cityId = $data['city_id'];
+        $city = new City();
+        $user->city = $city->load($user->cityId);
+        return $user;
     }
 
 

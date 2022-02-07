@@ -9,7 +9,7 @@ Class Model
 
     private $model;
 
-    private $manufacture_id;
+    private $manufacturer_id;
 
     public function getModel()
     {
@@ -19,9 +19,9 @@ Class Model
     {
         return $this->id;
     }
-    public function getManufactureId()
+    public function getManufacturerId()
     {
-        return $this->manufacture_id;
+        return $this->manufacturer_id;
     }
 
     public function load($id)
@@ -30,13 +30,14 @@ Class Model
         $model = $db->select()->from('model_id')->where('id',$id)->getOne();
         $this->id = $model['id'];
         $this->model = $model['model'];
+        $this->manufacturer_id = $model['manufacturer_id'];
         return $this;
     }
 
-    public static function getModels($manId)
+    public static function getModels()
     {
         $db = new DBHelper();
-        $data = $db->select()->from("model_id")->where('id',$manId)->get();
+        $data = $db->select()->from("model_id")->get();
         $models = [];
         foreach ($data as $element) {
             $model = new Model();

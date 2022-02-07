@@ -93,15 +93,16 @@ class User
 
     public function create()
     {
-        $passMatch = Validator::checkPassword($_POST['password'], $_POST['password2']);
+        $notEmptyPass = $_POST['password'] != '';
+        $passMatch = $_POST['password'] === $_POST['password2'];
         $isEmailValid = Validator::checkEmail($_POST['email']);
         $isEmailUniq = UserModel::emailUniq($_POST['email']);
-        if ($passMatch && $isEmailValid && $isEmailUniq) {
+        if ($notEmptyPass && $passMatch && $isEmailValid && $isEmailUniq) {
             $user = new UserModel();
             $user->setName($_POST['name']);
             $user->setLastName($_POST['last_name']);
             $user->setPhone($_POST['phone']);
-            $user->setPassword(md5($_POST['password']));
+            $user->setPassword($_POST['password']);
             $user->setEmail($_POST['email']);
             $user->setCityId($_POST['city_id']);
             $user->save();
@@ -187,8 +188,8 @@ class User
             $user->setPhone($_POST['phone']);
             $user->setCityId($_POST['city_id']);
 
-            if($_POST['password'] != '' && Validator::checkPassword($_POST['password'], $_POST['password2'])){
-                $user->setPassword(md5($_POST['password']));
+            if($_POST['password'] != '' && $_POST['password'] === $_POST['password2']){
+                $user->setPassword($_POST['password']);
             }
             if($user->getEmail() != $_POST['email']){
                 if(Validator::checkEmail($_POST['email']) && UserModel::emailUniq($_POST['email'])){
@@ -203,16 +204,12 @@ class User
     public function check()
     {
         $email = $_POST['email'];
-        $password = md5($_POST['password']);
-        $userId = UserModel::checkLoginCredentials($email, $password);
-        if($userId){
-            $user = new UserModel();
-            $user->load($userId);
-            $_SESSION['user_id'] = $userId;
+        $user = UserModel::loadByUsername($email);
+        if ($user !== null && Validator::checkPassword($_POST['password'], $user->getPassword())){
+            $_SESSION['user_id'] = $user->getId();
             $_SESSION['user'] = $user;
             Url::redirect('user/edit');
-        }else{
-            echo 'Patikrinkite duomenis';
+        } else {
             Url::redirect('user/login');
         }
     }
