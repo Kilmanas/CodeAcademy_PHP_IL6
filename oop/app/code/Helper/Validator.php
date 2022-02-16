@@ -2,15 +2,14 @@
 
 namespace Helper;
 
-Class Validator
+class Validator
 {
-    public static function checkPassword($pass, $hash): bool
+    public static function checkPassword($pass, $pass2)
     {
-        return password_verify($pass, $hash);
+        return $pass === $pass2;
     }
 
-    public static function checkEmail($email): bool
-    {
-        return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+    public static function checkEmail($email){
+        return strpos($email,'@');
     }
 }

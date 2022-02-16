@@ -2,6 +2,9 @@
 
 namespace Helper;
 
+use PDO;
+use PDOException;
+
 class DBHelper
 {
     private $conn;
@@ -13,11 +16,11 @@ class DBHelper
         $this->sql = '';
 
         try {
-            $this->conn = new \PDO("mysql:host=" . SERVERNAME . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
-            $this->conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            //echo "Connected successfully";
-        } catch (\PDOException $e) {
-            //echo "Connection failed: " . $e->getMessage();
+            $this->conn = new PDO("mysql:host=" . SERVERNAME . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        } catch (PDOException $e) {
+            Logger::log("Connection failed: " . $e->getMessage());
         }
     }
 
@@ -41,23 +44,26 @@ class DBHelper
 
     public function get()
     {
-        $rez = $this->conn->query($this->sql);
+        $rez = $this->exec();
         return $rez->fetchAll();
     }
 
     public function exec()
     {
-        $this->conn->query($this->sql);
+        if (DEBUG_MODE) {
+            Logger::log($this->sql);
+        }
+        return $this->conn->query($this->sql);
     }
 
     public function getOne()
     {
-        $rez = $this->conn->query($this->sql);
+        $rez = $this->exec();
         $data = $rez->fetchAll();
-        if(!empty($data)){
+        if (!empty($data)) {
             return $data[0];
-        }else{
-            return[];
+        } else {
+            return [];
         }
 
     }
@@ -77,13 +83,20 @@ class DBHelper
         foreach ($data as $key => $value) {
             $values[] = "$key = '$value'";
         }
-        $this->sql .= implode(',',$values);
+        $this->sql .= implode(',', $values);
+        return $this;
+    }
+
+    public function orderBy($order, $sort)
+    {
+        $this->sql .= ' ORDER BY ' . $order . ' ' . $sort;
         return $this;
     }
 
     public function limit($number)
     {
-        $this->sql .= ' LIMIT ' .$number;
+        $this->sql .= ' LIMIT ' . $number;
+        return $this;
     }
 
     public function where($field, $value, $operator = '=')

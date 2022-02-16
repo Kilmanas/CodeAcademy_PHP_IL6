@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '1df1d4a68147bcfbc506a31abe8f09e96648670d',
+        'reference' => '9ec1b6eed474cd4d74acf114a3d01f721a3b6a20',
         'name' => 'martynas/skelbimai',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '1df1d4a68147bcfbc506a31abe8f09e96648670d',
+            'reference' => '9ec1b6eed474cd4d74acf114a3d01f721a3b6a20',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-ctype' => array(

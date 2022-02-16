@@ -55,6 +55,7 @@ class FormHelper
         $this->form .= ' <br>';
 
     }
+
     public function getForm()
     {
         $this->form .= '</form>';

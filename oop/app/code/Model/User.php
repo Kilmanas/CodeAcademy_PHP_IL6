@@ -2,13 +2,14 @@
 
 namespace Model;
 
+use Core\AbstractModel;
 use Helper\DBHelper;
 use Helper\FormHelper;
 use Model\City;
 
-class User
+class User extends AbstractModel
 {
-    private $id;
+
 
     private $name;
 
@@ -24,16 +25,45 @@ class User
 
     private $city;
 
+    private $active;
 
-    public function getCity()
+    public function __construct()
     {
-        return $this->city;
+        $this->table = 'users';
+
+
+    }
+    protected function assignData()
+    {
+        $this->data =  [
+            'name' => $this->name,
+            'last_name' => $this->lastName,
+            'email' => $this->email,
+            'password' => $this->password,
+            'phone' => $this->phone,
+            'city_id' => $this->cityId,
+            'active' => $this->active
+
+        ];
     }
 
-    public function getId()
+    /**
+     * @return mixed
+     */
+    public function getActive()
     {
-        return $this->id;
+        return $this->active;
     }
+
+    /**
+     * @param mixed $active
+     */
+    public function setActive($active): void
+    {
+        $this->active = $active;
+    }
+
+
 
     public function getName()
     {
@@ -72,7 +102,7 @@ class User
 
     public function setPassword($password)
     {
-        $this->password = password_hash($password, null);
+        $this->password = $password;
     }
 
     public function getPhone()
@@ -90,49 +120,15 @@ class User
         return $this->cityId;
     }
 
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+
     public function setCityId($id)
     {
         $this->cityId = $id;
-    }
-
-    public function save()
-    {
-        if (!isset($this->id)) {
-            $this->create();
-        } else {
-            $this->update();
-        }
-    }
-
-    private function create()
-    {
-        $data = [
-            'name' => $this->name,
-            'last_name' => $this->lastName,
-            'email' => $this->email,
-            'password' => $this->password,
-            'phone' => $this->phone,
-            'city_id' => $this->cityId
-        ];
-
-        $db = new DBHelper();
-        $db->insert('users', $data)->exec();
-    }
-
-    private function update()
-    {
-        $data = [
-            'name' => $this->name,
-            'last_name' => $this->lastName,
-            'email' => $this->email,
-            'password' => $this->password,
-            'phone' => $this->phone,
-            'city_id' => $this->cityId
-
-        ];
-
-        $db = new DBHelper();
-        $db->update('users', $data)->where('id', $this->id)->exec();
     }
 
     public function load($id)
@@ -148,51 +144,44 @@ class User
         $this->cityId = $data['city_id'];
         $city = new City();
         $this->city = $city->load($this->cityId);
-        return $data;
-    }
-
-    public static function loadByUsername($username): ?User
-    {
-        $db = new DBHelper();
-        $data = $db->select()->from('users')->where('email',$username)->getOne();
-        if (empty($data)) {
-            return null;
-        }
-
-        $user = new User();
-        $user->id = $data['id'];
-        $user->name = $data['name'];
-        $user->lastName = $data['last_name'];
-        $user->phone = $data['phone'];
-        $user->email = $data['email'];
-        $user->password = $data['password'];
-        $user->cityId = $data['city_id'];
-        $city = new City();
-        $user->city = $city->load($user->cityId);
-        return $user;
+        $this->active = $data['active'];
+        return $this;
     }
 
 
-    public function delete()
-    {
-        $db = new DBHelper();
-        $db->delete()->from('users')->where('id', $this->id)->exec();
-    }
-
-
-    public static function emailUniq($email)
-    {
-        $db = new DBHelper();
-        $rez = $db->select()->from('users')->where('email', $email)->get();
-        return empty($rez);
-    }
 
     public static function checkLoginCredentials($email, $pass)
     {
         $db = new DBHelper();
-        $rez = $db->select('id')->from('users')->where('email', $email)->andWhere('password', $pass)->getOne();
-        return isset($rez['id']) ? $rez['id'] : false;
+        $rez = $db
+            ->select('id')
+            ->from('users')
+            ->where('email', $email)
+            ->andWhere('password', $pass)
+            ->andWhere('active', 1)
+            ->getOne();
+
+        if(isset($rez['id']) ){
+            return $rez['id'];
+            } else {
+                return false;
+            }
+
+    }
+
+    public static function getAllUsers()
+    {
+        $db = new DBHelper();
+        $data = $db->select('id')->from('users')->get();
+        $users = [];
+        foreach ($data as $element){
+            $user = new User();
+            $user->load($element['id']);
+            $users[] = $user;
         }
+
+        return $users;
+    }
 
 
 

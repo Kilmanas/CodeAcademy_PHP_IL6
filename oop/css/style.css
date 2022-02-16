@@ -1,0 +1,59 @@
+body{
+    background: #ffffff;
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+}
+header{
+    border: solid 1px #000;
+    background-color: #5e0303;
+    color: white;
+}
+.header_top{
+    background-color: #5e0303;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+}
+input {
+    width: 200px;
+    height: 30px;
+}
+textarea{
+    width: 200px;
+    height: 200px;
+}
+select {
+    width: 200px;
+    height: 30px;
+}
+li {
+    list-style-type: none;
+}
+nav ul li{
+    margin-right: 20px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size:20px;
+    border-right: 1px solid #ffffff;
+    padding-right: 20px;
+}
+.box {
+    border: 1px solid #5e0303;
+}
+.thumbnail {
+    width: 100px;
+    height: 70px;
+}
+.post_img {
+    width: 320px;
+    height: 240px;
+}
+footer{
+    border-top: 1px solid #000000;
+    text-align: center;
+}
