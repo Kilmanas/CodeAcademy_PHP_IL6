@@ -12,6 +12,11 @@ use Core\AbstractController;
 
 class User extends AbstractController
 {
+    public function index()
+    {
+        $this->data['users'] = UserModel::getAllUsers();
+        $this->render('user/list');
+    }
     public function show($id)
     {
         echo 'User controller ID: ' . $id;
@@ -174,7 +179,7 @@ class User extends AbstractController
         }
 
         $user->save();
-        Url::redirect('user/edit');
+        Url::redirect('catalog');
     }
 
     public function login()
@@ -213,6 +218,7 @@ class User extends AbstractController
             $user->setPassword(md5($_POST['password']));
             $user->setEmail($_POST['email']);
             $user->setCityId($_POST['city_id']);
+            $user->setRoleId(0);
             isset($_POST['active']);
             $user->setActive(1);
             $user->save();
@@ -245,9 +251,5 @@ class User extends AbstractController
         session_destroy();
     }
 
-    public function all()
-    {
-        $this->data['users'] = UserModel::getAllUsers();
-        $this->render('user/list');
-    }
+
 }

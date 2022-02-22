@@ -87,7 +87,7 @@ class DBHelper
         return $this;
     }
 
-    public function orderBy($order, $sort)
+    public function orderBy($order, $sort = 'ASC')
     {
         $this->sql .= ' ORDER BY ' . $order . ' ' . $sort;
         return $this;
@@ -95,7 +95,7 @@ class DBHelper
 
     public function limit($number)
     {
-        $this->sql .= ' LIMIT ' . $number;
+        $this->sql .= ' LIMIT ' .$number;
         return $this;
     }
 
@@ -114,6 +114,18 @@ class DBHelper
     public function orWhere($field, $value, $operator = '=')
     {
         $this->sql .= ' OR ' . $field . $operator . '"' . $value . '"';
+        return $this;
+    }
+
+    public function offset($offset)
+    {
+        $this->sql .= ' OFFSET ' . $offset;
+        return $this;
+    }
+
+    public function selectCount($fields = '*')
+    {
+        $this->sql .= 'SELECT COUNT (' . $fields . ') ';
         return $this;
     }
 }

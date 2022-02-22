@@ -23,52 +23,22 @@ class Ad extends AbstractModel
     private $active;
     private $slug;
     private $vin;
+    private $count;
 
-    public function __construct()
+    /**
+     * @return mixed
+     */
+    public function getCount()
     {
-        $this->table = 'ad';
+        return $this->count;
     }
 
-    public static function getAllAds()
+    /**
+     * @param mixed $count
+     */
+    public function setCount($count): void
     {
-        $db = new DBHelper();
-        $data = $db->select()->from('ad')->where('active', 1)->get();
-        $ads = [];
-        foreach ($data as $element) {
-            $ad = new Ad();
-            $ad->load($element['id']);
-            $ads[] = $ad;
-        }
-        return $ads;
-    }
-
-    public static function getSortedAds($order, $sort)
-    {
-        $db = new DBHelper();
-        $data = $db->select()->from('ad')->where('active', 1)->orderBy($order, $sort)
-            ->limit(5)->get();
-        $ads = [];
-        foreach ($data as $element) {
-            $ad = new Ad();
-            $ad->load($element['id']);
-            $ads[] = $ad;
-        }
-        return $ads;
-    }
-
-    public static function viewCount($id)
-    {
-        $db = new DBHelper();
-        $counts = $db->select()->from('ad')->where('id', $id)->getOne();
-        foreach ($counts as $count) {
-            $count++;
-        }
-        $data = [
-            'count' => $count
-        ];
-        $db = new DBHelper();
-        $db->update('ad', $data)->where('id', $id)->exec();
-
+        $this->count = $count;
     }
 
     /**
@@ -262,17 +232,54 @@ class Ad extends AbstractModel
     {
         $this->year = $year;
     }
+    public function __construct($id = null)
+    {
+        $this->table = 'ad';
+        if($id !== null){
+            $this->load($id);
+        }
 
-    public function loadBySlug($slug)
+    }
+
+    public static function getAllAds($page = null, $limit = null)
     {
         $db = new DBHelper();
-        $rez = $db->select()->from($this->table)->where('slug', $slug)->getOne();
-        if (!empty($rez)) {
-            $this->load($rez['id']);
-            return $this;
-        } else {
-            return false;
+        $data = $db->select()->from('ad')->orderBy('id');
+        if ($limit != null){
+            $db->limit($limit);
         }
+        if ($page != null){
+            $page = ($page - 1) * 5;
+            $db->offset($page);
+        }
+        $data = $db->get();
+        $ads = [];
+        foreach ($data as $element) {
+            $ad = new Ad();
+            $ad->load($element['id']);
+            $ads[] = $ad;
+        }
+        return $ads;
+    }
+    public static function getAllActiveAds($page = null, $limit = null)
+    {
+        $db = new DBHelper();
+        $data = $db->select()->from('ad')->where('active', 1)->orderBy('id');
+        if ($limit != null){
+            $db->limit($limit);
+        }
+        if ($page != null){
+            $page = ($page - 1) * 5;
+            $db->offset($page);
+        }
+        $data = $db->get();
+        $ads = [];
+        foreach ($data as $element) {
+            $ad = new Ad();
+            $ad->load($element['id']);
+            $ads[] = $ad;
+        }
+        return $ads;
     }
 
     public function load($id)
@@ -299,9 +306,57 @@ class Ad extends AbstractModel
             $type = new Type();
             $this->type = $type->load($this->typeId);
             $this->pictureUrl = $ad['picture_url'];
+            $this->count = $ad['count'];
 
         }
         return $this;
+    }
+
+    public static function getSortedAds($order, $sort)
+    {
+        $db = new DBHelper();
+        $data = $db->select()
+            ->from('ad')
+            ->where('active', 1)
+            ->orderBy($order, $sort)
+            ->limit(5)
+            ->get();
+        $ads = [];
+        foreach ($data as $element) {
+            $ad = new Ad();
+            $ad->load($element['id']);
+            $ads[] = $ad;
+        }
+        return $ads;
+    }
+
+    public static function viewCount($id)
+    {
+        $db = new DBHelper();
+        $counts = $db->select()->from('ad')->where('id', $id)->getOne();
+        foreach ($counts as $count) {
+            $count++;
+        }
+        $data = [
+            'count' => $count
+        ];
+        $db = new DBHelper();
+        $db->update('ad', $data)->where('id', $id)->exec();
+
+    }
+
+
+
+    public function loadBySlug($slug)
+    {
+        $db = new DBHelper();
+        $rez = $db->select()->from($this->table)->where('slug', $slug)->getOne();
+        if (!empty($rez)) {
+            $this->load($rez['id']);
+            return $this;
+        } else {
+            return false;
+        }
     }
 
     protected function assignData()
@@ -318,8 +373,10 @@ class Ad extends AbstractModel
             'type_id' => $this->type_id,
             'picture_url' => $this->pictureUrl,
             'user_id' => $this->user_id,
-            'active' => $this->active
+            'active' => $this->active,
+            'count' => $this->count
         ];
 
     }
+
 }

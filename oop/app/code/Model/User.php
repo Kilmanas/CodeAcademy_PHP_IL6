@@ -27,11 +27,31 @@ class User extends AbstractModel
 
     private $active;
 
-    public function __construct()
+    private $role_id;
+
+    /**
+     * @return mixed
+     */
+    public function getRoleId()
+    {
+        return $this->role_id;
+    }
+
+    /**
+     * @param mixed $role_id
+     */
+    public function setRoleId($role_id): void
+    {
+        $this->role_id = $role_id;
+    }
+
+    public function __construct($id = null)
     {
         $this->table = 'users';
+        if ($id !== null) {
+            $this->load($id);
 
-
+        }
     }
     protected function assignData()
     {
@@ -42,8 +62,8 @@ class User extends AbstractModel
             'password' => $this->password,
             'phone' => $this->phone,
             'city_id' => $this->cityId,
-            'active' => $this->active
-
+            'active' => $this->active,
+            'role_id' => $this->role_id
         ];
     }
 
@@ -145,6 +165,7 @@ class User extends AbstractModel
         $city = new City();
         $this->city = $city->load($this->cityId);
         $this->active = $data['active'];
+        $this->role_id = $data['role_id'];
         return $this;
     }
 

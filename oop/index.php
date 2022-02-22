@@ -13,7 +13,12 @@ if (isset($_SERVER['PATH_INFO']) && $_SERVER['PATH_INFO'] !== '/') {
     $path = explode('/', $path);
 //    print_r($path);
     $class = ucfirst($path[0]);
-    $method = $path[1];
+    if (isset($path[1])){
+        $method = $path[1];
+    } else {
+        $method = 'index';
+    }
+
     $class = '\Controller\\' . $class;
     if (class_exists($class)) {
         $obj = new $class();
@@ -25,12 +30,12 @@ if (isset($_SERVER['PATH_INFO']) && $_SERVER['PATH_INFO'] !== '/') {
             }
 
         } else {
-           $obj = new \Core\AbstractController();
-           $obj->render('parts/404');
+           $error = new Controller\Error();
+           $error->error404();
         }
     } else {
-        $obj = new \Core\AbstractController();
-        $obj->render('parts/404');
+        $error = new Controller\Error();
+        $error->error404();
     }
 } else {
     $obj = new \Controller\Home();

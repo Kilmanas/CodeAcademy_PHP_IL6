@@ -13,17 +13,36 @@ use Model\User as UserModel;
 
 class Catalog extends AbstractController
 {
+    public function index()
+    {
+        $this->data['count'] = Ad::count('ad');
+        $page = 1;
+        if(isset($_GET['p'])){
+            $page = (int)$_GET['p'] - 1;
+        }
+        $perPage = 5;
+        $this->data['ads'] = Ad::getAllActiveAds($page, $perPage);
+        $this->render('catalog/all');
+
+
+    }
     public function show($slug)
     {
         $ad = new Ad();
         $this->data['ad'] = $ad->loadBySlug($slug);
+        $this->data['title'] = $ad->getTitle();
+        $this->data['meta_desc'] = $ad->getDescription();
+//        $newViews = (int)$ad->getCount() + 1;
+//        $ad->setCount($newViews);
+//        $ad->save();
         if($this->data['ad']) {
             $this->manufacturer = $ad->getManufacturer();
             $this->model = $ad->getModel();
             $this->type = $ad->getType();
             $this->render('catalog/show');
         } else {
-            $this->render('parts/404');
+            $error = new Error();
+            $error->error404();
         }
     }
 
@@ -149,7 +168,7 @@ class Catalog extends AbstractController
         isset($_POST['active']);
         $ad->setActive(1);
         $ad->save();
-        Url::redirect('catalog/all');
+        Url::redirect('catalog');
     }
 
     public function edit($id)
@@ -272,16 +291,21 @@ class Catalog extends AbstractController
         isset($_POST['active']);
         $ad->setActive(1);
         $ad->save();
-        Url::redirect('catalog/all');
+        Url::redirect('catalog');
     }
-
-    public function all()
+    public function pages()
     {
-        $this->data['ads'] = Ad::getAllAds();
+       $form = new FormHelper('/?p=2', 'GET');
+       $form->input([
+           'name' => 'page',
+           'type' => 'submit',
+           'value' => 'Kitas puslapis'
+       ]);
+        $this->page['button'] = $form->getForm();
         $this->render('catalog/all');
-    }
-    public function landingCount()
-    {
 
     }
+
+
+
 }

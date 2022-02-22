@@ -7,7 +7,7 @@
             <th>Kaina</th>
             <th>Metai</th>
         </tr>
-        <tr><?php foreach ($this->data['ads'] as $ad): ?>
+        <tr><?php foreach ($this->data['latest'] as $ad): ?>
             <td>
                 <a href="<?php echo $this->url('catalog/show', $ad->getSlug()) ?>"><?php echo $ad->getTitle() . ' '; ?></a>
             </td>
@@ -28,7 +28,7 @@
             <th>Kaina</th>
             <th>Metai</th>
         </tr>
-        <tr><?php foreach ($this->data['ad'] as $ad): ?>
+        <tr><?php foreach ($this->data['popular'] as $ad): ?>
             <td>
                 <a href="<?php echo $this->url('catalog/show', $ad->getSlug()) ?>"><?php echo $ad->getTitle() . ' '; ?></a>
             </td>

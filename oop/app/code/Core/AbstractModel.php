@@ -56,4 +56,10 @@ class AbstractModel
         $db = new DBHelper();
         $db->delete()->from($this->table)->where('id', $this->id)->exec();
     }
+    public static function count($table)
+    {
+        $db = new DBHelper();
+        $rez = $db->select('count(*)')->from($table)->where('active', 1)->get();
+        return $rez[0][0];
+    }
 }
