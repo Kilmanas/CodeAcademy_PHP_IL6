@@ -2,12 +2,14 @@
 
 namespace Model;
 
+use Core\AbstractModel;
+use Core\Interfaces\ModelInterface;
 use Helper\DBHelper;
 use Helper\FormHelper;
 
-Class City
+Class City extends AbstractModel
 {
-    private $id;
+    protected $id;
     private $name;
     protected const TABLE = 'cities';
 

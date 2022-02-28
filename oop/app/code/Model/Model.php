@@ -1,11 +1,13 @@
 <?php
 namespace Model;
 
+use Core\AbstractModel;
+use Core\Interfaces\ModelInterface;
 use Helper\DBHelper;
 
-Class Model
+Class Model extends AbstractModel implements ModelInterface
 {
-    private $id;
+    protected $id;
 
     private $model;
 
@@ -48,7 +50,8 @@ Class Model
     }
 
 
-
-
-
+    public function assignData()
+    {
+        // TODO: Implement assignData() method.
+    }
 }
