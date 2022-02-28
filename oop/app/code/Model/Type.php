@@ -2,6 +2,7 @@
 namespace Model;
 
 use Core\AbstractModel;
+use Core\Interfaces\ModelInterface;
 use Helper\DBHelper;
 
 Class Type extends AbstractModel
