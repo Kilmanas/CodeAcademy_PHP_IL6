@@ -23,7 +23,7 @@ input {
 }
 textarea{
     width: 200px;
-    height: 200px;
+    height: 100px;
 }
 select {
     width: 200px;

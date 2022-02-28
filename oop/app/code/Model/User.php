@@ -29,6 +29,7 @@ class User extends AbstractModel
 
     private $role_id;
 
+    protected const TABLE = 'users';
     /**
      * @return mixed
      */
@@ -47,10 +48,9 @@ class User extends AbstractModel
 
     public function __construct($id = null)
     {
-        $this->table = 'users';
+
         if ($id !== null) {
             $this->load($id);
-
         }
     }
     protected function assignData()
@@ -154,7 +154,7 @@ class User extends AbstractModel
     public function load($id)
     {
         $db = new DBHelper();
-        $data = $db->select()->from('users')->where('id',$id)->getOne();
+        $data = $db->select()->from(self::TABLE)->where('id',$id)->getOne();
         $this->id = $data['id'];
         $this->name = $data['name'];
         $this->lastName = $data['last_name'];
@@ -176,7 +176,7 @@ class User extends AbstractModel
         $db = new DBHelper();
         $rez = $db
             ->select('id')
-            ->from('users')
+            ->from(self::TABLE)
             ->where('email', $email)
             ->andWhere('password', $pass)
             ->andWhere('active', 1)
@@ -193,7 +193,7 @@ class User extends AbstractModel
     public static function getAllUsers()
     {
         $db = new DBHelper();
-        $data = $db->select('id')->from('users')->get();
+        $data = $db->select('id')->from(self::TABLE)->get();
         $users = [];
         foreach ($data as $element){
             $user = new User();

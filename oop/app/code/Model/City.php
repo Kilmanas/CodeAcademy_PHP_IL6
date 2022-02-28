@@ -9,6 +9,7 @@ Class City
 {
     private $id;
     private $name;
+    protected const TABLE = 'cities';
 
 
     public function getId()
@@ -24,7 +25,7 @@ Class City
     public function load($id)
     {
         $db = new DBHelper();
-        $city = $db->select()->from('cities')->where('id',$id)->getOne();
+        $city = $db->select()->from(self::TABLE)->where('id',$id)->getOne();
         $this->id = $city['id'];
         $this->name = $city['name'];
         return $this;
@@ -32,7 +33,7 @@ Class City
     public static function getCities()
     {
         $db = new DBHelper();
-        $data = $db->select()->from("cities")->get();
+        $data = $db->select()->from(self::TABLE)->get();
         $cities = [];
         foreach ($data as $element){
             $city = new City();

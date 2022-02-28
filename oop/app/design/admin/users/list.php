@@ -17,7 +17,7 @@
     </tr>
     <?php foreach ($this->data['users'] as $user): ?>
         <tr>
-            <td><input name="<?= $user->getId() ?>" type="checkbox"></td>
+            <td><input type="checkbox" name="collection[]" value="<?= $user->getId()?>"></td>
             <td><?= $user->getId(); ?></td>
             <td><?= $user->getName(); ?></td>
             <td><?= $user->getLastName(); ?></td>
@@ -30,6 +30,9 @@
         </tr>
     <?php endforeach; ?>
 </table>
-    <input type="submit" name="action" value="Aktyvuoti">
-    <input type="submit" name="action" value="Deaktyvuoti">
+    <select name="action">
+        <option value="0">Deaktyvuoti</option>
+        <option value="1">Aktyvuoti</option>
+    </select>
+    <input type="submit" value="keisti">
 </form>

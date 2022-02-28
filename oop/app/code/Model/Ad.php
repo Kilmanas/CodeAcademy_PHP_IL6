@@ -10,20 +10,21 @@ class Ad extends AbstractModel
 
     private $title;
     private $description;
-    private $manufacturer_id;
+    private $manufacturerId;
     private $manufacturer;
-    private $model_id;
+    private $modelId;
     private $model;
     private $price;
     private $year;
-    private $type_id;
+    private $typeId;
     private $type;
-    private $user_id;
+    private $userId;
     private $pictureUrl;
     private $active;
     private $slug;
     private $vin;
     private $count;
+    protected const TABLE = 'ad';
 
     /**
      * @return mixed
@@ -127,15 +128,15 @@ class Ad extends AbstractModel
 
     public function getManufacturerId()
     {
-        return $this->manufacturer_id;
+        return $this->manufacturerId;
     }
 
     /**
      * @param mixed $manufacturer_id
      */
-    public function setManufacturerId($manufacturer_id): void
+    public function setManufacturerId($manufacturerId): void
     {
-        $this->manufacturer_id = $manufacturer_id;
+        $this->manufacturerId = $manufacturerId;
     }
 
     public function getManufacturer()
@@ -148,15 +149,15 @@ class Ad extends AbstractModel
      */
     public function getModelId()
     {
-        return $this->model_id;
+        return $this->modelId;
     }
 
     /**
      * @param mixed $model_id
      */
-    public function setModelId($model_id): void
+    public function setModelId($modelId): void
     {
-        $this->model_id = $model_id;
+        $this->modelId = $modelId;
     }
 
     public function getModel()
@@ -169,15 +170,15 @@ class Ad extends AbstractModel
      */
     public function getTypeId()
     {
-        return $this->type_id;
+        return $this->typeId;
     }
 
     /**
-     * @param mixed $type_id
+     * @param mixed $typeId
      */
-    public function setTypeId($type_id): void
+    public function setTypeId($typeId): void
     {
-        $this->type_id = $type_id;
+        $this->typeId = $typeId;
     }
 
     public function getType()
@@ -190,15 +191,15 @@ class Ad extends AbstractModel
      */
     public function getUserId()
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
     /**
-     * @param mixed $user_id
+     * @param mixed $userId
      */
-    public function setUserId($user_id): void
+    public function setUserId($userId): void
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
     }
 
     /**
@@ -234,7 +235,6 @@ class Ad extends AbstractModel
     }
     public function __construct($id = null)
     {
-        $this->table = 'ad';
         if($id !== null){
             $this->load($id);
         }
@@ -244,7 +244,7 @@ class Ad extends AbstractModel
     public static function getAllAds($page = null, $limit = null)
     {
         $db = new DBHelper();
-        $data = $db->select()->from('ad')->orderBy('id');
+        $data = $db->select()->from(self::TABLE)->orderBy('id');
         if ($limit != null){
             $db->limit($limit);
         }
@@ -264,7 +264,7 @@ class Ad extends AbstractModel
     public static function getAllActiveAds($page = null, $limit = null)
     {
         $db = new DBHelper();
-        $data = $db->select()->from('ad')->where('active', 1)->orderBy('id');
+        $data = $db->select()->from(self::TABLE)->where('active', 1)->orderBy('id');
         if ($limit != null){
             $db->limit($limit);
         }
@@ -285,7 +285,7 @@ class Ad extends AbstractModel
     public function load($id)
     {
         $db = new DBHelper();
-        $ad = $db->select()->from('ad')->where('id', $id)->getOne();
+        $ad = $db->select()->from(self::TABLE)->where('id', $id)->getOne();
         if (!empty($ad)) {
             $this->id = $ad['id'];
             $this->title = $ad['title'];
@@ -316,7 +316,7 @@ class Ad extends AbstractModel
     {
         $db = new DBHelper();
         $data = $db->select()
-            ->from('ad')
+            ->from(self::TABLE)
             ->where('active', 1)
             ->orderBy($order, $sort)
             ->limit(5)
@@ -333,7 +333,7 @@ class Ad extends AbstractModel
     public static function viewCount($id)
     {
         $db = new DBHelper();
-        $counts = $db->select()->from('ad')->where('id', $id)->getOne();
+        $counts = $db->select()->from(self::TABLE)->where('id', $id)->getOne();
         foreach ($counts as $count) {
             $count++;
         }
@@ -341,7 +341,7 @@ class Ad extends AbstractModel
             'count' => $count
         ];
         $db = new DBHelper();
-        $db->update('ad', $data)->where('id', $id)->exec();
+        $db->update(self::TABLE, $data)->where('id', $id)->exec();
 
     }
 
@@ -350,7 +350,7 @@ class Ad extends AbstractModel
     public function loadBySlug($slug)
     {
         $db = new DBHelper();
-        $rez = $db->select()->from($this->table)->where('slug', $slug)->getOne();
+        $rez = $db->select()->from(self::TABLE)->where('slug', $slug)->getOne();
         if (!empty($rez)) {
             $this->load($rez['id']);
             return $this;
@@ -365,18 +365,30 @@ class Ad extends AbstractModel
             'title' => $this->title,
             'slug' => $this->slug,
             'description' => $this->description,
-            'manufacturer_id' => $this->manufacturer_id,
-            'model_id' => $this->model_id,
+            'manufacturer_id' => $this->manufacturerId,
+            'model_id' => $this->modelId,
             'vin' => $this->vin,
             'price' => $this->price,
             'year' => $this->year,
-            'type_id' => $this->type_id,
+            'type_id' => $this->typeId,
             'picture_url' => $this->pictureUrl,
-            'user_id' => $this->user_id,
+            'user_id' => $this->userId,
             'active' => $this->active,
             'count' => $this->count
         ];
 
+    }
+    public function getComments()
+    {
+        return Comments::getAdComments($this->id);
+    }
+    public function getUser()
+    {
+        $db = new DBHelper();
+        $data = $db->select("id")->from("users")->where("id", $this->userId)->getOne();
+        $user = new User();
+
+        return $user->load($data["id"]);
     }
 
 }

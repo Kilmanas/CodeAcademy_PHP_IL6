@@ -10,6 +10,7 @@ use Model\Manufacturer;
 use Model\Model;
 use Model\Type;
 use Model\User as UserModel;
+use Model\Comments;
 
 class Catalog extends AbstractController
 {
@@ -32,9 +33,19 @@ class Catalog extends AbstractController
         $this->data['ad'] = $ad->loadBySlug($slug);
         $this->data['title'] = $ad->getTitle();
         $this->data['meta_desc'] = $ad->getDescription();
+        $comments = new Comments();
+        $this->data['comments'] = $comments->getAdComments($ad->getId());
+
 //        $newViews = (int)$ad->getCount() + 1;
 //        $ad->setCount($newViews);
 //        $ad->save();
+        $commentForm = new FormHelper("catalog/comment", "post");
+        $commentForm->textArea("comment", "Komentaras");
+        $commentForm->input(["type"=>"hidden", "name"=>"ad_id", "value"=>$ad->getId()]);
+        $commentForm->input(["type"=>"submit", "name"=>"submit", "value"=>"Rašyti"]);
+
+        $this->data['comment_form'] = $commentForm->getForm();
+
         if($this->data['ad']) {
             $this->manufacturer = $ad->getManufacturer();
             $this->model = $ad->getModel();
@@ -306,6 +317,27 @@ class Catalog extends AbstractController
 
     }
 
+    public function comment()
+    {
+        if(!$this->isUserLoged()) {
+            Url::redirect("user/login");
+        }
 
+        $ad = new Ad();
+        $ad->load($_POST["ad_id"]);
+
+        if(!isset($_POST["comment"]) || strlen($_POST["comment"]) <= 5) {
+            Url::redirect("catalog/show/" . $ad->getSlug());
+        }
+
+        $comment = new Comments();
+        $comment->setUserId($_SESSION["user_id"]);
+        $comment->setAdId($_POST["ad_id"]);
+        $comment->setComment($_POST["comment"]);
+
+        $comment->save();
+
+        Url::redirect("catalog/show/" . $ad->getSlug());
+    }
 
 }

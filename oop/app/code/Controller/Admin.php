@@ -16,6 +16,12 @@ use Model\User as UserModel;
 
 class Admin extends AbstractController
 {
+    public const ACTIVE = 1;
+
+    public const NOT_ACTIVE = 0;
+
+    public const DELETE =2;
+
     public function __construct()
     {
         parent::__construct();
@@ -228,8 +234,7 @@ class Admin extends AbstractController
     {
 
         $adId = $_POST['id'];
-        $ad = new Ad();
-        $ad->load($adId);
+        $ad = new Ad($adId);
         $ad->setTitle($_POST['title']);
         $ad->setDescription($_POST['description']);
         $ad->setVin(($_POST['vin']));
@@ -247,22 +252,20 @@ class Admin extends AbstractController
     public function changeUserStatus()
     {
         $action = $_POST['action'];
-        unset($_POST['action']);
-
-        if ($action == 'Deaktyvuoti'){
-            foreach ($_POST as $key => $value) {
-                $ad = new UserModel($key);
-                $ad->setActive(0);
-                $ad->save();
+        $ids = $_POST['collection'];
+        if ($action == self::ACTIVE || $action == self::NOT_ACTIVE) {
+            foreach ($ids as $id) {
+                $user = new UserModel($id);
+                $user->setActive($action);
+                $user->save();
             }
-        }elseif($action == 'Aktyvuoti'){
-            foreach ($_POST as $key => $value) {
-                $ad = new UserModel($key);
-                $ad->setActive(1);
-                $ad->save();
+        } elseif ($action == self::DELETE) {
+            foreach ($ids as $id) {
+                $user = new UserModel($id);
+                $user->delete();
             }
         }
-        Url::redirect('admin/users');
+    Url::redirect('admin/users');
     }
     public function changeAdStatus()
     {
@@ -284,4 +287,5 @@ class Admin extends AbstractController
         }
         Url::redirect('admin/ads');
     }
+
 }
