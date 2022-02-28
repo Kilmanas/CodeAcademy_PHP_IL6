@@ -45,6 +45,6 @@ Class Manufacturer extends AbstractModel implements ModelInterface
 
     public function assignData()
     {
-        // TODO: Implement assignData() method. arba ne
+        // this method will never born
     }
 }

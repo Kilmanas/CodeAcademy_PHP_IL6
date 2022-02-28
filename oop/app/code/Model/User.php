@@ -54,7 +54,7 @@ class User extends AbstractModel implements ModelInterface
             $this->load($id);
         }
     }
-    protected function assignData()
+    public function assignData()
     {
         $this->data =  [
             'name' => $this->name,

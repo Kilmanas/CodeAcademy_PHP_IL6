@@ -52,6 +52,6 @@ Class Model extends AbstractModel implements ModelInterface
 
     public function assignData()
     {
-        // TODO: Implement assignData() method.
+        // Not needed
     }
 }
