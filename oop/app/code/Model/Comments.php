@@ -3,9 +3,10 @@
 namespace Model;
 
 use Core\AbstractModel;
+use Core\Interfaces\ModelInterface;
 use Helper\DBHelper;
 
-class Comments extends AbstractModel
+class Comments extends AbstractModel implements ModelInterface
 {
     private $adId;
     private $userId;
@@ -65,7 +66,7 @@ class Comments extends AbstractModel
         $this->createdAt = $comment['created_at'];
         return $this;
     }
-    protected function assignData()
+    public function assignData()
     {
         $this->data = [
             "comment" => $this->comment,

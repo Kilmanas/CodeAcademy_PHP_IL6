@@ -3,11 +3,12 @@
 namespace Model;
 
 use Core\AbstractModel;
+use Core\Interfaces\ModelInterface;
 use Helper\DBHelper;
 use Helper\FormHelper;
 use Model\City;
 
-class User extends AbstractModel
+class User extends AbstractModel implements ModelInterface
 {
 
 
@@ -53,7 +54,7 @@ class User extends AbstractModel
             $this->load($id);
         }
     }
-    protected function assignData()
+    public function assignData()
     {
         $this->data =  [
             'name' => $this->name,

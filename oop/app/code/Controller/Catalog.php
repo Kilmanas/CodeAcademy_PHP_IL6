@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Core\AbstractController;
+use Core\Interfaces\ControllerInterface;
 use Helper\FormHelper;
 use Helper\Url;
 use Model\Ad;
@@ -12,7 +13,7 @@ use Model\Type;
 use Model\User as UserModel;
 use Model\Comments;
 
-class Catalog extends AbstractController
+class Catalog extends AbstractController implements ControllerInterface
 {
     public function index()
     {
