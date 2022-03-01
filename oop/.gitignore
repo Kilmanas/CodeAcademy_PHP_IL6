@@ -1,4 +1,4 @@
-vendor/*
-var/cache/*
-!var/cache/.gitkeep
-var/log/*
+/vendor
+/var
+config.php
+/.idea
