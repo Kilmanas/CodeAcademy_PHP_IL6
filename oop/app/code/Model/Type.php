@@ -1,11 +1,13 @@
 <?php
 namespace Model;
 
+use Core\AbstractModel;
+use Core\Interfaces\ModelInterface;
 use Helper\DBHelper;
 
-Class Type
+Class Type extends AbstractModel
 {
-    private $id;
+    protected $id;
 
     private $type;
 

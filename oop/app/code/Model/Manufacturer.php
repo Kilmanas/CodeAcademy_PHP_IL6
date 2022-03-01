@@ -1,11 +1,14 @@
 <?php
 namespace Model;
 
+use Core\AbstractController;
+use Core\AbstractModel;
+use Core\Interfaces\ModelInterface;
 use Helper\DBHelper;
 
-Class Manufacturer
+Class Manufacturer extends AbstractModel implements ModelInterface
 {
-    private $id;
+    protected $id;
 
     private $manufacturer;
 
@@ -40,4 +43,8 @@ Class Manufacturer
         return $manufacturers;
     }
 
+    public function assignData()
+    {
+        // this method will never born
+    }
 }

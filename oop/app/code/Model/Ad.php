@@ -3,9 +3,10 @@
 namespace Model;
 
 use Core\AbstractModel;
+use Core\Interfaces\ModelInterface;
 use Helper\DBHelper;
 
-class Ad extends AbstractModel
+class Ad extends AbstractModel implements ModelInterface
 {
 
     private $title;
@@ -359,7 +360,7 @@ class Ad extends AbstractModel
         }
     }
 
-    protected function assignData()
+    public function assignData()
     {
         $this->data = [
             'title' => $this->title,
