@@ -2,7 +2,7 @@
 <head>
     <title><?= $this->data['title'] ?></title>
     <meta name="description" content="<?= $this->data['meta_desc'] ?>">
-    <link rel="stylesheet" href="<?php echo BASE_URL_WO_INDEX.'css/admin.css'; ?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL_WO_INDEX.'/pub/css/admin.css'; ?>">
 </head>
 <body>
 <header>
