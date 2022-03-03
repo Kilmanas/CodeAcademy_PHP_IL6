@@ -34,6 +34,10 @@ class AbstractController
     {
         return Url::link($path, $param);
     }
+    public function staticUrl($path, $param = null)
+    {
+        return Url::staticUrl($path, $param);
+    }
 
     protected function isUserLoged()
     {

@@ -22,5 +22,12 @@ class Url
         $string=preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
         return $string;
     }
-
+    public static function staticUrl($path, $param = null)
+    {
+        $url = BASE_URL_WO_INDEX.$path;
+        if ($param !== null){
+            $url .= '/'.$param;
+        }
+        return $url;
+    }
 }

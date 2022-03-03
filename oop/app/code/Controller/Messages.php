@@ -6,6 +6,7 @@ use Core\AbstractController;
 use Core\Interfaces\ControllerInterface;
 use Helper\FormHelper;
 use Helper\Url;
+use Model\Messages as MessagesModel;
 
 
 class Messages extends AbstractController implements ControllerInterface
@@ -14,11 +15,11 @@ class Messages extends AbstractController implements ControllerInterface
     public function index()
     {
 
-        $this->data['messages'] = \Model\Messages::getAllMessages($_SESSION['user_id']);
+        $this->data['messages'] = MessagesModel::getAllMessages($_SESSION['user_id']);
 
 
         foreach ($this->data['messages'] as $message){
-            $open = new \Model\Messages($message->getId());
+            $open = new MessagesModel($message->getId());
             $open->setOpened(1);
             $open->save();
         }
@@ -29,7 +30,7 @@ class Messages extends AbstractController implements ControllerInterface
 
     public function create($userTo)
     {
-        if (!isset($_SESSION['user_id'])) {
+        if (!$this->isUserLoged()) {
             Url::redirect('user/login');
         } else {
             $form = new FormHelper('messages/send', 'POST');
@@ -58,7 +59,7 @@ class Messages extends AbstractController implements ControllerInterface
 
     public function send()
     {
-        $message = new \Model\Messages();
+        $message = new MessagesModel();
         $message->setUserFrom($_POST['user_from']);
         $message->setUserTo($_POST['user_to']);
         $message->setMessage($_POST['message']);
