@@ -36,10 +36,8 @@ class Catalog extends AbstractController implements ControllerInterface
         $this->data['meta_desc'] = $ad->getDescription();
         $comments = new Comments();
         $this->data['comments'] = $comments->getAdComments($ad->getId());
-
-//        $newViews = (int)$ad->getCount() + 1;
-//        $ad->setCount($newViews);
-//        $ad->save();
+        $author = new UserModel();
+        $this->data['author'] = $author->load($ad->getUserId());
         $commentForm = new FormHelper("catalog/comment", "post");
         $commentForm->textArea("comment", "Komentaras");
         $commentForm->input(["type"=>"hidden", "name"=>"ad_id", "value"=>$ad->getId()]);

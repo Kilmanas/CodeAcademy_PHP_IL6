@@ -2,23 +2,23 @@
     <ol>
 
         <li> <?php $ad = $this->data['ad'];
-            $ad->getId() . '<br>';
-            echo $ad->getTitle() . '<br>';
-            echo $ad->getDescription() . '<br>';
-            echo $this->manufacturer->getManufacturer() . '<br>';
-            echo $this->model->getModel() . '<br>';
-            echo $ad->getVin() . '<br>';
-            echo $ad->getPrice() . '&#128' . '<br>';
-            echo $ad->getYear() . '<br>';
-            echo $this->type->getType() . '<br>';
-            echo $ad->getUser($ad->getUserId())->getName().' '. $ad->getUser($ad->getUserId())->getLastName(). '<br>';
-            echo $ad->getUser($ad->getUserId())->getPhone(); ?><br>
-            <img class="post_img" src="<?php echo $ad->getPictureUrl() ?>" onerror="this.style.display='none'"><br>
+            $ad->getId() . '<br>'; ?>
+        <li><?= $ad->getTitle(); ?></li>
+        <li><?= $ad->getDescription(); ?></li>
+        <li><?= $this->manufacturer->getManufacturer(); ?></li>
+        <li><?= $this->model->getModel(); ?></li>
+        <li><?= $ad->getVin(); ?></li>
+        <li><?= $ad->getPrice() . '&#128'; ?></li>
+        <li><?= $ad->getYear(); ?></li>
+        <li><?= $this->type->getType(); ?></li>
+        <li><?= $this->data['author']->getName().' '. $this->data['author']->getLastName(); ?>
+        <a href="<?= $this->url('messages/create', $ad->getUserId()) ?>">Siųsti žinutę</a></li>
+        <li><?= $ad->getUser($ad->getUserId())->getPhone(); ?></li>
+        <li><img class="post_img" src="<?php echo $ad->getPictureUrl() ?>" onerror="this.style.display='none'"></li>
             <?php
             $id = $ad->getId();
             \Model\Ad::viewCount($id);
             ?>
-            <a href="<?= $this->url('messages/create', $ad->getUserId()) ?>">Siųsti žinutę</a><br>
         </li>
 
     </ol>
