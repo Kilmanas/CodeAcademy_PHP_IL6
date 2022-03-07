@@ -3,6 +3,7 @@
 namespace Core;
 
 use Helper\Url;
+use Model\Messages;
 use Model\User;
 
 class AbstractController
@@ -33,6 +34,10 @@ class AbstractController
     {
         return Url::link($path, $param);
     }
+    public function staticUrl($path, $param = null)
+    {
+        return Url::staticUrl($path, $param);
+    }
 
     protected function isUserLoged()
     {
@@ -49,6 +54,10 @@ class AbstractController
         }
 
         return false;
+    }
+    public function newMessageCount()
+    {
+        return Messages::countNewMessages($_SESSION['user_id']);
     }
 
 }
