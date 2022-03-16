@@ -1,3 +1,3 @@
 <div>
-    <?php echo $this->data['message'] ?>
+    <?php echo $this->data['chat_form'] ?>
 </div>
