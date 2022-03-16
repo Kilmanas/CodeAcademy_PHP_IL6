@@ -7,9 +7,9 @@ use PDOException;
 
 class DBHelper
 {
-    private $conn;
+    private \PDO $conn;
 
-    private $sql;
+    private string $sql;
 
     public function __construct()
     {
@@ -24,31 +24,31 @@ class DBHelper
         }
     }
 
-    public function select($fields = '*')
+    public function select(string $fields = '*') :DBHelper
     {
         $this->sql .= 'SELECT ' . $fields . ' ';
         return $this;
     }
 
-    public function from($table)
+    public function from(string $table) :DBHelper
     {
         $this->sql .= ' FROM ' . $table . ' ';
         return $this;
     }
 
-    public function delete()
+    public function delete() :DBHelper
     {
         $this->sql .= 'DELETE ';
         return $this;
     }
 
-    public function get()
+    public function get(): ?array
     {
         $rez = $this->exec();
         return $rez->fetchAll();
     }
 
-    public function exec()
+    public function exec(): ?\PDOStatement
     {
         if (DEBUG_MODE) {
             Logger::log($this->sql);
@@ -68,7 +68,7 @@ class DBHelper
 
     }
 
-    public function insert($table, $data)
+    public function insert(string $table, array $data) :DBHelper
     {
         $this->sql .= 'INSERT INTO ' . $table .
             ' (' . implode(',', array_keys($data)) . ')
@@ -76,7 +76,7 @@ class DBHelper
         return $this;
     }
 
-    public function update($table, $data)
+    public function update(string $table, array $data) :DBHelper
     {
         $this->sql .= 'UPDATE ' . $table . ' SET ';
         $values = [];
@@ -87,43 +87,43 @@ class DBHelper
         return $this;
     }
 
-    public function orderBy($order, $sort = 'ASC')
+    public function orderBy(string $order, string $sort = 'ASC') :DBHelper
     {
         $this->sql .= ' ORDER BY ' . $order . ' ' . $sort;
         return $this;
     }
 
-    public function limit($number)
+    public function limit(int $number) :DBHelper
     {
         $this->sql .= ' LIMIT ' .$number;
         return $this;
     }
 
-    public function where($field, $value, $operator = '=')
+    public function where(string $field,string $value, string $operator = '=') :DBHelper
     {
         $this->sql .= ' WHERE ' . $field . $operator . '"' . $value . '"';
         return $this;
     }
 
-    public function andWhere($field, $value, $operator = '=')
+    public function andWhere(string $field,string $value, string $operator = '=') :DBHelper
     {
         $this->sql .= ' AND ' . $field . $operator . '"' . $value . '"';
         return $this;
     }
 
-    public function orWhere($field, $value, $operator = '=')
+    public function orWhere(string $field, string $value, string $operator = '=') :DBHelper
     {
         $this->sql .= ' OR ' . $field . $operator . '"' . $value . '"';
         return $this;
     }
 
-    public function offset($offset)
+    public function offset(int $offset) :DBHelper
     {
         $this->sql .= ' OFFSET ' . $offset;
         return $this;
     }
 
-    public function selectCount($fields = '*')
+    public function selectCount(string $fields = '*') :DBHelper
     {
         $this->sql .= 'SELECT COUNT (' . $fields . ') ';
         return $this;

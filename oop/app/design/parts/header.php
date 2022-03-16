@@ -25,6 +25,9 @@
                 <li>
                     <a href='<?= $this->url('messages') ?>'>Žinutės (<?= $this->newMessageCount() ?>)</a>
                 </li>
+            <li>
+                <a href="<?= $this->url('catalog/favorites') ?>">Įsiminti skelbimai</a>
+            </li>
             <?php else: ?>
                 <li>
                     <a href="<?php echo $this->url('user/login') ?>">Prisijungti</a>

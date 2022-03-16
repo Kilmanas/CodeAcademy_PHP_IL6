@@ -1,18 +1,22 @@
 <div class="messages">
     <h3>Žinutės</h3>
-<?php foreach ($this->data['messages'] as $message) : ?>
-
-            <?php $message->getUser()->getName();
-            $message->getUser()->getLastName(); ?>
-
+<?php foreach ($this->data['chat'] as $chat) : ?>
+    <div class="message-box">
+        <div>
+            <?= $chat['chat_friend']->getName().' '.$chat['chat_friend']->getLastName();
+            ?>
         </div>
         <div class="message_date">
-            <?= $message->getDateSent() ?>
+            <?= $chat['message']->getDate() ?>
         </div>
         <div class="message_content">
-            <p><?= $message->getMessage() ?></p>
+           <?= $chat['message']->getMessage() ?>
         </div>
+    <div class="read-more">
+       <a href="<?= $this->url('messages/chat/'. $chat['chat_friend']->getId()) ?>">Atsakyti</a>
     </div>
+
+    </div>
+</div>
 <?php endforeach; ?>
 
-</ol>

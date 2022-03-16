@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Controller;
 
@@ -30,17 +31,17 @@ class Admin extends AbstractController implements ControllerInterface
         }
     }
 
-    public function index()
+    public function index(): void
     {
         $this->renderAdmin('index');
     }
 
-    public function users()
+    public function users(): void
     {
         $this->data['users'] = UserModel::getAllUsers();
         $this->renderAdmin('users/list');
     }
-    public function userEdit($userId)
+    public function userEdit(int $userId): void
     {
 
         $user = new UserModel();
@@ -104,7 +105,7 @@ class Admin extends AbstractController implements ControllerInterface
         $this->renderAdmin('users/useredit');
 
     }
-    public function userUpdate()
+    public function userUpdate(): void
     {
         $userId = $_POST['id'];
         $user = new UserModel();
@@ -125,12 +126,12 @@ class Admin extends AbstractController implements ControllerInterface
         $user->save();
         Url::redirect('admin/users');
     }
-    public function ads()
+    public function ads(): void
     {
         $this->data['ads'] = Ad::getAllAds();
         $this->renderAdmin('catalog/list');
     }
-    public function  adEdit($id)
+    public function  adEdit(int $id): void
     {
 
         $ad = new Ad();
@@ -230,7 +231,7 @@ class Admin extends AbstractController implements ControllerInterface
         $this->data['form'] = $form->getForm();
         $this->renderAdmin('catalog/adedit');
     }
-    public function adUpdate()
+    public function adUpdate(): void
     {
 
         $adId = $_POST['id'];
@@ -249,7 +250,7 @@ class Admin extends AbstractController implements ControllerInterface
         $ad->save();
         Url::redirect('admin/ads');
     }
-    public function changeUserStatus()
+    public function changeUserStatus() :void
     {
         $action = $_POST['action'];
         $ids = $_POST['collection'];
@@ -267,7 +268,7 @@ class Admin extends AbstractController implements ControllerInterface
         }
     Url::redirect('admin/users');
     }
-    public function changeAdStatus()
+    public function changeAdStatus(): void
     {
         $action = $_POST['action'];
         unset($_POST['action']);
@@ -275,13 +276,13 @@ class Admin extends AbstractController implements ControllerInterface
         if ($action == 'Deaktyvuoti'){
             foreach ($_POST as $key => $value) {
                 $ad = new Ad($key);
-                $ad->setActive(0);
+                $ad->setActive((bool)0);
                 $ad->save();
             }
         }elseif($action == 'Aktyvuoti'){
             foreach ($_POST as $key => $value) {
                 $ad = new Ad($key);
-                $ad->setActive(1);
+                $ad->setActive((bool)1);
                 $ad->save();
             }
         }

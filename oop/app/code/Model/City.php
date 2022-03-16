@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Model;
 
@@ -9,30 +10,26 @@ use Helper\FormHelper;
 
 Class City extends AbstractModel
 {
-    protected $id;
-    private $name;
+
+    private string $name;
     protected const TABLE = 'cities';
 
 
-    public function getId()
-    {
-        return $this->id;
-    }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function load($id)
+    public function load(int $id): City
     {
         $db = new DBHelper();
-        $city = $db->select()->from(self::TABLE)->where('id',$id)->getOne();
-        $this->id = $city['id'];
-        $this->name = $city['name'];
+        $city = $db->select()->from(self::TABLE)->where('id',(string)$id)->getOne();
+        $this->id = (int)$city['id'];
+        $this->name = (string)$city['name'];
         return $this;
     }
-    public static function getCities()
+    public static function getCities(): array
     {
         $db = new DBHelper();
         $data = $db->select()->from(self::TABLE)->get();

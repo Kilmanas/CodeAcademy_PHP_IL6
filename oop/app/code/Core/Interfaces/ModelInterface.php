@@ -5,7 +5,7 @@ namespace Core\Interfaces;
 interface ModelInterface
 {
 
-    public function load($id);
+    public function load(int $id);
 
     public function assignData();
 

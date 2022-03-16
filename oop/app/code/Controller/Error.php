@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Controller;
 
@@ -7,7 +8,7 @@ use Core\Interfaces\ControllerInterface;
 
 class Error extends AbstractController implements ControllerInterface
 {
-    public function index()
+    public function index(): void
     {
 
     }

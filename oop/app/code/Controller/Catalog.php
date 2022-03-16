@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Controller;
 
@@ -7,15 +8,17 @@ use Core\Interfaces\ControllerInterface;
 use Helper\FormHelper;
 use Helper\Url;
 use Model\Ad;
+use Model\Favorites;
 use Model\Manufacturer;
 use Model\Model;
+use Model\Ratings;
 use Model\Type;
 use Model\User as UserModel;
 use Model\Comments;
 
 class Catalog extends AbstractController implements ControllerInterface
 {
-    public function index()
+    public function index(): void
     {
         $this->data['count'] = Ad::count('ad');
         $page = 1;
@@ -28,7 +31,7 @@ class Catalog extends AbstractController implements ControllerInterface
 
 
     }
-    public function show($slug)
+    public function show(string $slug): void
     {
         $ad = new Ad();
         $this->data['ad'] = $ad->loadBySlug($slug);
@@ -45,6 +48,32 @@ class Catalog extends AbstractController implements ControllerInterface
 
         $this->data['comment_form'] = $commentForm->getForm();
 
+        $this->data['rated'] = false;
+        $rate = new Ratings();
+        $isRateNull = $rate->loadByUserAndAd($_SESSION['user_id'], $ad->getId());
+        if ($isRateNull !== null){
+            $this->data['rated'] = true;
+            $this->data['user_rate'] = $rate->getRank();
+        }
+        $this->data['favorites'] = false;
+        $favorite = new Favorites();
+        $isFavorite = $favorite->isAdFavoriteByUser($_SESSION['user_id'], $ad->getId());
+        if ($isFavorite){
+            $this->data['favorites'] = true;
+        }
+
+        $ratings = Ratings::getAdRating($ad->getId());
+        $sum = 0;
+        foreach ($ratings as $rate){
+            $sum += $rate['rank'];
+
+        }
+        $this->data['ad_rating'] = 0;
+        $this->data['rating_count'] = count($ratings);
+        if($sum >0){
+            $this->data['ad_rating'] = $sum / $this->data['rating_count'];
+        }
+
         if($this->data['ad']) {
             $this->manufacturer = $ad->getManufacturer();
             $this->model = $ad->getModel();
@@ -57,7 +86,7 @@ class Catalog extends AbstractController implements ControllerInterface
     }
 
 
-    public function add()
+    public function add(): void
     {
         if (!isset($_SESSION['user_id'])) {
             Url::redirect('user/login');
@@ -156,32 +185,32 @@ class Catalog extends AbstractController implements ControllerInterface
         $this->render('catalog/add');
     }
 
-    public function create()
+    public function create(): void
     {
         $slug = Url::slug($_POST['title']);
         while(!Ad::valueUniq('slug',$slug,'ad')){
             $slug = $slug.rand(0,100);
         }
-        $vin= strtoupper($_POST['vin']);
+        $vin= strtoupper((string)$_POST['vin']);
         $ad = new Ad();
-        $ad->setTitle($_POST['title']);
+        $ad->setTitle((string)$_POST['title']);
         $ad->setSlug($slug);
-        $ad->setDescription($_POST['desc']);
-        $ad->setManufacturerId($_POST['manufacturer_id']);
-        $ad->setModelId($_POST['model_id']);
-        $ad->setVin($vin);
-        $ad->setPrice($_POST['price']);
-        $ad->setYear($_POST['year']);
-        $ad->setTypeId($_POST['type_id']);
-        $ad->setPictureUrl($_POST['image']);
-        $ad->setUserId($_SESSION['user_id']);
+        $ad->setDescription((string)$_POST['desc']);
+        $ad->setManufacturerId((int)$_POST['manufacturer_id']);
+        $ad->setModelId((int)$_POST['model_id']);
+        $ad->setVin((string)$vin);
+        $ad->setPrice((float)$_POST['price']);
+        $ad->setYear((int)$_POST['year']);
+        $ad->setTypeId((int)$_POST['type_id']);
+        $ad->setPictureUrl((string)$_POST['image']);
+        $ad->setUserId((int)$_SESSION['user_id']);
         isset($_POST['active']);
-        $ad->setActive(1);
+        $ad->setActive((bool)1);
         $ad->save();
         Url::redirect('catalog');
     }
 
-    public function edit($id)
+    public function edit(int $id): void
     {
         if (!isset($_SESSION['user_id'])) {
             Url::redirect('');
@@ -283,27 +312,27 @@ class Catalog extends AbstractController implements ControllerInterface
         $this->render('catalog/edit');
     }
 
-    public function update()
+    public function update(): void
     {
 
         $adId = $_POST['id'];
         $ad = new Ad();
         $ad->load($adId);
-        $ad->setTitle($_POST['title']);
-        $ad->setDescription($_POST['description']);
-        $ad->setVin(($_POST['vin']));
-        $ad->setManufacturerId($_POST['manufacturer_id']);
-        $ad->setModelId($_POST['model_id']);
-        $ad->setPrice($_POST['price']);
-        $ad->setYear($_POST['year']);
-        $ad->setTypeId($_POST['type_id']);
-        $ad->setPictureUrl($_POST['image']);
+        $ad->setTitle((string)$_POST['title']);
+        $ad->setDescription((string)$_POST['description']);
+        $ad->setVin(((string)$_POST['vin']));
+        $ad->setManufacturerId((int)$_POST['manufacturer_id']);
+        $ad->setModelId((int)$_POST['model_id']);
+        $ad->setPrice((float)$_POST['price']);
+        $ad->setYear((int)$_POST['year']);
+        $ad->setTypeId((int)$_POST['type_id']);
+        $ad->setPictureUrl((string)$_POST['image']);
         isset($_POST['active']);
-        $ad->setActive(1);
+        $ad->setActive((bool)1);
         $ad->save();
         Url::redirect('catalog');
     }
-    public function pages()
+    public function pages(): void
     {
        $form = new FormHelper('/?p=2', 'GET');
        $form->input([
@@ -316,27 +345,63 @@ class Catalog extends AbstractController implements ControllerInterface
 
     }
 
-    public function comment()
+    public function comment(): void
     {
         if(!$this->isUserLoged()) {
             Url::redirect("user/login");
         }
 
         $ad = new Ad();
-        $ad->load($_POST["ad_id"]);
+        $ad->load((int)$_POST["ad_id"]);
 
         if(!isset($_POST["comment"]) || strlen($_POST["comment"]) <= 5) {
             Url::redirect("catalog/show/" . $ad->getSlug());
         }
 
         $comment = new Comments();
-        $comment->setUserId($_SESSION["user_id"]);
-        $comment->setAdId($_POST["ad_id"]);
-        $comment->setComment($_POST["comment"]);
+        $comment->setUserId((int)$_SESSION["user_id"]);
+        $comment->setAdId((int)$_POST["ad_id"]);
+        $comment->setComment((string)$_POST["comment"]);
 
         $comment->save();
 
         Url::redirect("catalog/show/" . $ad->getSlug());
     }
+    public function rate()
+    {
+        $rate = new Ratings();
+        $rate->loadByUserAndAd((int)$_SESSION['user_id'], (int)$_POST['ad_id']);
+        $rate->setUserId((int)$_SESSION['user_id']);
+        $rate->setAdId((int)$_POST['ad_id']);
+        $rate->setRank((int)$_POST['rank']);
+        $rate->save();
+        Url::redirect('');
+    }
 
+    public function addToFavorites()
+    {
+        $favorite = new Favorites();
+        $favorite->setUserId((int)$_SESSION['user_id']);
+        $favorite->setAdId((int)$_POST['ad_id']);
+        $favorite->setFavorite((bool)1);
+        $favorite->save();
+        $ad = new Ad();
+        $ad->load((int)$_POST['ad_id']);
+        Url::redirect('catalog/show/' . $ad->getSlug() );
+    }
+
+    public function removeFavorite()
+    {
+        $userId = $_SESSION['user_id'];
+        $adId = $_POST['ad_id'];
+        Favorites::removeFromFavorites((int) $userId, (int) $adId);
+        $ad = new Ad();
+        $ad->load((int)$_POST['ad_id']);
+        Url::redirect('catalog/show/' . $ad->getSlug() );
+    }
+    public function favorites()
+    {
+        $this->data['favorites'] = Favorites::loadUserFavorites($_SESSION['user_id']);
+        $this->render('catalog/favorites');
+    }
 }
