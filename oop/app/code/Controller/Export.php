@@ -3,14 +3,16 @@
 namespace Controller;
 
 use Core\AbstractController;
+use Helper\CsvParser;
 use Model\Ad;
 
 class Export extends AbstractController
 {
-    public function exec(){
+    public function exec()
+    {
         $ads = Ad::getAllActiveAds();
         $adsArray = [];
-        foreach ($ads as $key => $ad){
+        foreach ($ads as $key => $ad) {
             $adsArray[$key]['title'] = $ad->getTitle();
             $adsArray[$key]['description'] = $ad->getDescription();
             $adsArray[$key]['year'] = $ad->getYear();
@@ -19,12 +21,7 @@ class Export extends AbstractController
             $adsArray[$key]['image'] = $ad->getPictureUrl();
         }
         $csvPath = PROJECT_ROOT_DIR . '/var/export/ads.csv';
-        $file = fopen($csvPath, 'a');
-        $header = ['title', 'description', 'year', 'price', 'vin', 'image'];
-        fputcsv($file, $header);
-        foreach ($adsArray as $element){
-            fputcsv($file, $element);
-        } fclose($file);
+        CsvParser::createCsv($csvPath, $adsArray);
     }
 
 }
