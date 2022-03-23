@@ -2,7 +2,7 @@
     <?php foreach ($this->data['messages'] as $message): ?>
         <?php  $class = $message->getUserFrom() == $_SESSION['user_id'] ? 'my' :   'him'; ?>
         <div class="message-box <?= $class ?>" >
-            <div class="message">
+            <div class="message-content">
                 <?= $message->getMessage() ?>
             </div>
             <div class="date">

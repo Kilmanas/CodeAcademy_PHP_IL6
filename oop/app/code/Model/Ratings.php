@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace Model;
 
 use Core\AbstractModel;
@@ -63,7 +63,7 @@ class Ratings extends AbstractModel implements ModelInterface
     public function load(int $id): Ratings
     {
         $db = new DBHelper();
-        $rank = $db->select()->from(self::TABLE)->where('id', $id)->getOne();
+        $rank = $db->select()->from(self::TABLE)->where('id', (string) $id)->getOne();
         if (!empty($rank)){
         $this->id = (int)$rank['id'];
         $this->adId = (int)$rank['ad_id'];
@@ -86,11 +86,11 @@ class Ratings extends AbstractModel implements ModelInterface
         $rez = $db
             ->select()
             ->from(self::TABLE)
-            ->where('user_id', $userId)
-            ->andWhere('ad_id', $adId)
+            ->where('user_id', (string) $userId)
+            ->andWhere('ad_id', (string) $adId)
             ->getOne();
         if (!empty($rez)){
-            $this->load($rez['id']);
+            $this->load((int)$rez['id']);
             return $this;
         }
         return null;
@@ -99,7 +99,7 @@ class Ratings extends AbstractModel implements ModelInterface
     public static function getAdRating(int $adId): array
     {
         $db = new DBHelper();
-        return $db->select()->from(self::TABLE)->where('ad_id', $adId)->get();
+        return $db->select()->from(self::TABLE)->where('ad_id', (string) $adId)->get();
     }
     public function getUser()
     {

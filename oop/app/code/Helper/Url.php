@@ -22,7 +22,8 @@ class Url
     public static function slug(string $string) :string
     {
         $string = strtolower($string);
-        $string=preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
+        $string = preg_replace('~[^\pL\d]+~u','-', $string);
+        $string = preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
         return $string;
     }
     public static function staticUrl(string $path, ?string $param = null) :string

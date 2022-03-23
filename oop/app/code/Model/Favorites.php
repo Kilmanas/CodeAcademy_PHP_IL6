@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace Model;
 
 use Core\AbstractModel;
@@ -64,7 +64,7 @@ class Favorites extends AbstractModel implements ModelInterface
     public function load(int $id): object
     {
         $db = new DBHelper();
-        $rez = $db->select()->from(self::TABLE)->where('id', $id)->getOne();
+        $rez = $db->select()->from(self::TABLE)->where('id', (string) $id)->getOne();
         if (!empty($rez)){
             $this->id = (int)$rez['id'];
             $this->adId = (int)$rez['ad_id'];
@@ -88,8 +88,8 @@ class Favorites extends AbstractModel implements ModelInterface
         $data = $db
             ->select()
             ->from(self::TABLE)
-            ->where('user_id', $userId)
-            ->andWhere('favorite', 1)
+            ->where('user_id', (string) $userId)
+            ->andWhere('favorite', (string) 1)
             ->get();
         $favorites = [];
         foreach ($data as $element){
@@ -98,14 +98,15 @@ class Favorites extends AbstractModel implements ModelInterface
             $favorites[] = $favorite;
         } return $favorites;
     }
+
     public function isAdFavoriteByUser(int $userId, int $adId): bool
     {
         $db=new DBHelper();
         $rez = $db
             ->select()
             ->from(self::TABLE)
-            ->where('user_id', $userId)
-            ->andWhere('ad_id', $adId)
+            ->where('user_id', (string) $userId)
+            ->andWhere('ad_id', (string) $adId)
             ->getOne();
         if (!empty($rez)){
 
@@ -117,6 +118,6 @@ class Favorites extends AbstractModel implements ModelInterface
     public static function removeFromFavorites(int $userId, int $adId): void
     {
         $db = new DBHelper();
-        $db->delete()->from(self::TABLE)->where('user_id', $userId)->andWhere('ad_id', $adId)->exec();
+        $db->delete()->from(self::TABLE)->where('user_id', (string) $userId)->andWhere('ad_id', (string) $adId)->exec();
     }
 }

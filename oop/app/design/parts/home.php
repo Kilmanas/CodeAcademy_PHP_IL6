@@ -1,42 +1,30 @@
 <h2>Naujausi skelbimai</h2>
 
-<table>
-    <div class="box">
-        <tr>
-            <th>Pavadinimas</th>
-            <th>Kaina</th>
-            <th>Metai</th>
-        </tr>
-        <tr><?php foreach ($this->data['latest'] as $ad): ?>
-            <td>
+
+        <?php foreach ($this->data['latest'] as $ad): ?>
+            <div class="newest-box">
                 <a href="<?php echo $this->url('catalog/show', $ad->getSlug()) ?>"><?php echo $ad->getTitle() . ' '; ?></a>
-            </td>
-            <td><?php echo $ad->getPrice() . '&#128 '; ?></td>
-            <td><?php echo $ad->getYear() . ' '; ?> </td>
-            <td><img class="thumbnail" src="<?php echo $ad->getPictureUrl() ?>" onerror="this.style.display='none'">
-            </td>
-        </tr>
+
+           <?php echo $ad->getPrice() . '&#128 '; ?>
+            <?php echo $ad->getYear() . ' '; ?>
+            <img class="thumbnail" src="<?php echo $ad->getPictureUrl() ?>" onerror="this.style.display='none'">
+
+
     </div>
     <?php endforeach; ?>
-</table>
+
 
 <h2>Populiariausi skelbimai</h2>
-<table>
-    <div class="box">
-        <tr>
-            <th>Pavadinimas</th>
-            <th>Kaina</th>
-            <th>Metai</th>
-        </tr>
-        <tr><?php foreach ($this->data['popular'] as $ad): ?>
-            <td>
+
+
+       <?php foreach ($this->data['popular'] as $ad): ?>
+           <div class="popular-box">
                 <a href="<?php echo $this->url('catalog/show', $ad->getSlug()) ?>"><?php echo $ad->getTitle() . ' '; ?></a>
-            </td>
-            <td><?php echo $ad->getPrice() . '&#128 '; ?></td>
-            <td><?php echo $ad->getYear() . ' '; ?> </td>
-            <td><img class="thumbnail" src="<?php echo $ad->getPictureUrl() ?>" onerror="this.style.display='none'">
-            </td>
-        </tr>
+
+         <?php echo $ad->getPrice() . '&#128 '; ?>
+           <?php echo $ad->getYear() . ' '; ?>
+            <img class="thumbnail" src="<?php echo $ad->getPictureUrl() ?>" onerror="this.style.display='none'">
+
     </div>
     <?php endforeach; ?>
-</table>
+

@@ -401,6 +401,9 @@ class Catalog extends AbstractController implements ControllerInterface
     }
     public function favorites()
     {
+        if(!$this->isUserLoged()) {
+            Url::redirect("user/login");
+        }
         $this->data['favorites'] = Favorites::loadUserFavorites($_SESSION['user_id']);
         $this->render('catalog/favorites');
     }

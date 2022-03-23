@@ -49,7 +49,14 @@ nav ul li a {
     border-radius: 20px;
     padding: 10px;
     margin-bottom: 20px;
-
+}
+.newest-box .popular-box{
+    border: 1px solid #5e0303;
+    display: flex;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 50%;
 }
 .title{
 
