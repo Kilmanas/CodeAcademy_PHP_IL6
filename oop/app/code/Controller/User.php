@@ -216,13 +216,13 @@ class User extends AbstractController implements ControllerInterface
             $user = new UserModel();
             $user->setName($_POST['name']);
             $user->setLastName($_POST['last_name']);
-            $user->setPhone($_POST['phone']);
+            $user->setPhone((string)$_POST['phone']);
             $user->setPassword(md5($_POST['password']));
-            $user->setEmail($_POST['email']);
-            $user->setCityId($_POST['city_id']);
+            $user->setEmail((string)$_POST['email']);
+            $user->setCityId((int)$_POST['city_id']);
             $user->setRoleId(0);
             isset($_POST['active']);
-            $user->setActive(1);
+            $user->setActive((bool)1);
             $user->save();
             Url::redirect('user/login');
         } else {

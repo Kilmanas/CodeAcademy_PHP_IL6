@@ -31,60 +31,6 @@ class User extends AbstractModel implements ModelInterface
     private int $role_id;
 
     protected const TABLE = 'users';
-    /**
-     * @return mixed
-     */
-    public function getRoleId(): int
-    {
-        return $this->role_id;
-    }
-
-    /**
-     * @param mixed $role_id
-     */
-    public function setRoleId(int $role_id): void
-    {
-        $this->role_id = $role_id;
-    }
-
-    public function __construct($id = null)
-    {
-
-        if ($id !== null) {
-            $this->load($id);
-        }
-    }
-    public function assignData(): void
-    {
-        $this->data =  [
-            'name' => $this->name,
-            'last_name' => $this->lastName,
-            'email' => $this->email,
-            'password' => $this->password,
-            'phone' => $this->phone,
-            'city_id' => $this->cityId,
-            'active' => $this->active,
-            'role_id' => $this->role_id
-        ];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getActive(): bool
-    {
-        return $this->active;
-    }
-
-    /**
-     * @param mixed $active
-     */
-    public function setActive(bool $active): void
-    {
-        $this->active = $active;
-    }
-
-
 
     public function getName(): string
     {
@@ -151,6 +97,62 @@ class User extends AbstractModel implements ModelInterface
     {
         $this->cityId = $id;
     }
+    /**
+     * @return mixed
+     */
+    public function getRoleId(): int
+    {
+        return $this->role_id;
+    }
+
+    /**
+     * @param mixed $role_id
+     */
+    public function setRoleId(int $role_id): void
+    {
+        $this->role_id = $role_id;
+    }
+
+    public function __construct($id = null)
+    {
+
+        if ($id !== null) {
+            $this->load($id);
+        }
+    }
+    public function assignData(): void
+    {
+        $this->data =  [
+            'name' => $this->name,
+            'last_name' => $this->lastName,
+            'email' => $this->email,
+            'password' => $this->password,
+            'phone' => $this->phone,
+            'city_id' => $this->cityId,
+            'active' => $this->active,
+            'role_id' => $this->role_id
+        ];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActive(): bool
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param mixed $active
+     */
+    public function setActive(bool $active): void
+    {
+        $this->active = $active;
+    }
+
+
+
+
 
     public function load(int $id): User
     {

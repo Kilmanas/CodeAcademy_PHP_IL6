@@ -12,6 +12,10 @@ class Validator
 
     public static function checkEmail(string $email): bool
     {
-        return strpos($email,'@');
+        if (strpos($email,'@')){
+        return true;
+        } else {
+            return false;
+        }
     }
 }

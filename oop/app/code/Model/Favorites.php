@@ -120,4 +120,17 @@ class Favorites extends AbstractModel implements ModelInterface
         $db = new DBHelper();
         $db->delete()->from(self::TABLE)->where('user_id', (string) $userId)->andWhere('ad_id', (string) $adId)->exec();
     }
+    public static function getUsersByAd($adId): array
+    {
+        $db = new DBHelper();
+        $data = $db
+            ->select()
+            ->from(self::TABLE)
+            ->where('ad_id', $adId)
+            ->get();
+        $usersIds = [];
+        foreach ($data as $user){
+            $usersIds[] = $user['user_id'];
+        } return $usersIds;
+    }
 }

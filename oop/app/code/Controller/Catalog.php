@@ -10,11 +10,13 @@ use Helper\Url;
 use Model\Ad;
 use Model\Favorites;
 use Model\Manufacturer;
+use Model\Messages as MessagesModel;
 use Model\Model;
 use Model\Ratings;
 use Model\Type;
 use Model\User as UserModel;
 use Model\Comments;
+use Service\PriceChangeInformer\Messanger;
 
 class Catalog extends AbstractController implements ControllerInterface
 {
@@ -317,7 +319,12 @@ class Catalog extends AbstractController implements ControllerInterface
 
         $adId = $_POST['id'];
         $ad = new Ad();
-        $ad->load($adId);
+        $ad->load((int)$adId);
+        if ($ad->getPrice() !== $_POST['price']){
+            $messanger = new Messanger();
+            $messanger->setMessages($adId);
+
+        }
         $ad->setTitle((string)$_POST['title']);
         $ad->setDescription((string)$_POST['description']);
         $ad->setVin(((string)$_POST['vin']));
@@ -327,9 +334,9 @@ class Catalog extends AbstractController implements ControllerInterface
         $ad->setYear((int)$_POST['year']);
         $ad->setTypeId((int)$_POST['type_id']);
         $ad->setPictureUrl((string)$_POST['image']);
-        isset($_POST['active']);
         $ad->setActive((bool)1);
         $ad->save();
+
         Url::redirect('catalog');
     }
     public function pages(): void

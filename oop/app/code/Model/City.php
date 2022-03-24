@@ -36,7 +36,7 @@ Class City extends AbstractModel
         $cities = [];
         foreach ($data as $element){
             $city = new City();
-            $city->load($element['id']);
+            $city->load((int)$element['id']);
             $cities[] = $city;
         }
         return $cities;
