@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>{% block title %}vagiu.lt - Didžiausias vogtų automobilių skelbimų portalas Lietuvoje{% endblock %}</title>
+{% block styles %}
+<style>
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #5B1506;
+}
+li {
+    float: left;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+li a:hover {
+    background-color: #111111;
+}
+</style>
+{% endblock %}
+{% block scripts %}
+{% endblock %}
+</head>
+<body>
+<div class="header">
+        <ul class="menu">
+        <li><a href="">Pagrindinis</a></li>
+        <li><a href="">Registruotis</a></li>
+        <li><a href="">Prisijungti</a></li>
+        <li><a href=""></a></li>
+    </ul>
+</div>
+<div class="content">
+{% block content %}
+        {% autoescape false %}
+        {{ page_content }}
+        {% endautoescape %}
+{% endblock %}
+</div>
+</body>
+</html>

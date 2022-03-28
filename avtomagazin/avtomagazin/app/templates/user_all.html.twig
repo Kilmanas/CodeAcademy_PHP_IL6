@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+<h2>Visi vartotojai</h2>
+{% autoescape false %}
+{{ page-content }}
+<ul>
+    {%  for user in data['users'] %}
+    <li> <a href= >
+            {{ user.name user.lastName }}
+        </a>
+        {% endfor %}
+    </li>
+</ul>
+{% endautoescape %}
+
+{% endblock %}

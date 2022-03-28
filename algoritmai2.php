@@ -1,23 +1,13 @@
 <?php
 
-$array = [1, 3, 4, 6, 9 ,2, 3, 4, 5, 5, 7, 8, 9, 10, 1, 4, 5,34, 23, 1, 4, 6, 77, 3, 9];
-$sum = 0;
-$n = count($array);
-$avg = array_sum($array) / $n;
-
-
-$lowerArray = [];
-$higherArray = [];
-    foreach ($array as $key=>$value){
-        if($value < $avg){
-            $lowerArray[] = $value;
-        } else {
-            $higherArray [] = $value;
-        }
-    }
-$n = count($lowerArray);
-    $lowAvg = array_sum($lowerArray) / $n;
-$n = count($higherArray);
-$highSum = 0;
-    $highAvg = array_sum($higherArray) / $n;
-echo $lowAvg. ' ir '. $highAvg;
+$array = [1000, 2303, 444, 5554, 9993, 45454, 4343, 65656, 65659, 43434, 92, 23456, 758595, 344433];
+$rez = 0;
+for ($i = 0; $i < count($array); $i++) {
+    if ($rez < $array[$i] && $array[$i] % 2 == 0)
+        $rez = $array[$i];
+}
+$key = array_search ($rez, $array);
+$rez = $rez * 0.6;
+$array[$key] = $rez;
+echo '<pre>';
+print_r($array);
