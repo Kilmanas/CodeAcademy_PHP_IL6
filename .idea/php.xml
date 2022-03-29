@@ -3,6 +3,9 @@
   <component name="PhpIncludePathManager">
     <include_path>
       <path value="$PROJECT_DIR$/oop/vendor/composer" />
+      <path value="$PROJECT_DIR$/oop/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/oop/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/oop/vendor/twig/twig" />
     </include_path>
   </component>
 </project>
