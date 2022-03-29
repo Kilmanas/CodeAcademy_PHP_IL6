@@ -1,5 +1,7 @@
 <?php
 
+
+
 date_default_timezone_set('Europe/Vilnius');
 
 include '../config.php';
@@ -12,7 +14,7 @@ if(DEBUG_MODE){
 }
 
 $router = new Core\Router();
-$launcher = new \Core\Launcher();
+$launcher = new Core\Launcher();
 
 $launcher->start($router->getRouteInfo());
 
