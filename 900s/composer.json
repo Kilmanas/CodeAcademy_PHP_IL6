@@ -1,0 +1,13 @@
+{
+    "name": "martynas/900s",
+    "description": "Senienu portalas",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "": "app/code"
+        }
+    },
+    "require": {
+        "aura/sqlquery": "^2.7"
+    }
+}
