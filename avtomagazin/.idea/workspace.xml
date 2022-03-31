@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="6f3c0921-f36c-4bc3-a14f-70161062434b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop/app/code/Controller/Catalog.php" beforeDir="false" afterPath="$PROJECT_DIR$/../oop/app/code/Controller/Catalog.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop/app/code/Controller/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/../oop/app/code/Controller/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop/app/code/Model/Ad.php" beforeDir="false" afterPath="$PROJECT_DIR$/../oop/app/code/Model/Ad.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop/app/code/Model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/../oop/app/code/Model/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop/app/templates/catalog_add.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/../oop/app/templates/catalog_add.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop/app/templates/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/../oop/app/templates/layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/../oop/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oop/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../oop/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../900s/app/code/Controller/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/app/code/Controller/News.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../900s/app/code/Core/ModelAbstract.php" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/app/code/Core/ModelAbstract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../900s/app/code/Core/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/app/code/Core/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../900s/app/code/Model/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/app/code/Model/News.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../900s/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../900s/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../900s/pub/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/pub/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/avtomagazin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/avtomagazin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../untitled/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/avtomagazin/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
@@ -25,6 +30,14 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/avtomagazin/vendor/composer" />
+      <path value="$PROJECT_DIR$/avtomagazin/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/avtomagazin/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/avtomagazin/vendor/symfony/polyfill-ctype" />
+    </include_path>
   </component>
   <component name="ProjectId" id="24qIBKOavUw0nVg1s5W91xPiHQ1" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -39,6 +52,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -56,6 +73,9 @@
       <option name="presentableId" value="Default" />
       <updated>1644351553580</updated>
       <workItem from="1644351554840" duration="46000" />
+      <workItem from="1648662251983" duration="196000" />
+      <workItem from="1648663063637" duration="247000" />
+      <workItem from="1648663424517" duration="1073000" />
     </task>
     <servers />
   </component>

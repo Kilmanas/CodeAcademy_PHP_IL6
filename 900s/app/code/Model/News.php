@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Model;
 
+use Core\DB;
 use Core\ModelAbstract;
 
 class News extends ModelAbstract
@@ -160,8 +161,62 @@ class News extends ModelAbstract
         $this->createdAt = $createdAt;
     }
 
-    public function loadBySlug($slug)
+    public function loadBySlug($slug) : ?News
     {
-        $this->select()->from('news')->where('slug = :slug', ['slug' =>$slug]);
+        $sql = $this->select();
+        $sql->cols(['*'])->from('news')->where('slug = :slug');
+        $sql->bindValue('slug', $slug);
+        if ($rez = $this->db->get($sql)) {
+            $this->title = $rez['title'];
+            $this->content = $rez['content'];
+            $this->authorId = (int)$rez['author_id'];
+            $this->createdAt = $rez['created_at'];
+            $this->active = (int)$rez['active'];
+            $this->views = (int)$rez['views'];
+            $this->slug = $rez['slug'];
+            $this->image = $rez['image'];
+            return $this;
+        }else{
+            return null;
+        }
+    }
+    public function load(int $id): ?News
+    {
+
+        $sql = $this->select();
+        $sql->cols(['*'])->from('news')->where('id = :id')->bindValue('id', $id);
+
+        if ($rez = $this->db->get($sql)) {
+
+            $this->id = (int)$rez['id'];
+            $this->title = $rez['title'];
+            $this->content = $rez['content'];
+            $this->authorId = (int)$rez['author_id'];
+            $this->createdAt = $rez['created_at'];
+            $this->active = (int)$rez['active'];
+            $this->views = (int)$rez['views'];
+            $this->slug = $rez['slug'];
+            $this->image = $rez['image'];
+
+            return $this;
+
+        }
+
+        return null;
+
+    }
+    public function loadAll() : ?array
+    {
+        $sql = $this->select();
+        $sql->cols(['*'])->from('news');
+        if ($rez = $this->db->getAll($sql)){
+            $news = [];
+            foreach ($rez as $article){
+                $new = new News();
+                $new->load((int)$article['id']);
+                $news [] = $new;
+            }
+            return $news;
+        } return null;
     }
 }

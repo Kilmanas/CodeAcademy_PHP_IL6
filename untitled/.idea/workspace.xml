@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c6d9656-9ff7-4d37-a829-80019b8de6fe" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../900s/app/code/Core/Launcher.php" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/app/code/Core/Launcher.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../900s/app/code/Controller/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/app/code/Controller/News.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../900s/app/code/Core/ModelAbstract.php" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/app/code/Core/ModelAbstract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../900s/app/code/Core/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/app/code/Core/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../900s/app/code/Model/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/app/code/Model/News.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../900s/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../900s/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../900s/pub/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../900s/pub/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../avtomagazin/.idea/avtomagazin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../avtomagazin/.idea/avtomagazin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../avtomagazin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../avtomagazin/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +42,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../oop" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../avtomagazin" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -59,7 +66,7 @@
       <updated>1648481492398</updated>
       <workItem from="1648481493581" duration="1559000" />
       <workItem from="1648483859170" duration="11112000" />
-      <workItem from="1648568581289" duration="11317000" />
+      <workItem from="1648568581289" duration="33436000" />
     </task>
     <servers />
   </component>

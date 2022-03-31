@@ -6,10 +6,12 @@ use Aura\SqlQuery\QueryFactory;
 class ModelAbstract
 {
     protected QueryFactory $queryFactory;
+    protected DB $db;
 
     public function __construct()
     {
         $this->queryFactory = new QueryFactory('Mysql');
+        $this->db = new DB();
     }
 
     protected function select()
@@ -31,4 +33,5 @@ class ModelAbstract
     {
         return $this->queryFactory->newDelete();
     }
+
 }
