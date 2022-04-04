@@ -11,6 +11,8 @@ class News extends ModelAbstract
 
     private string $title;
 
+    private string $intro;
+
     private string $content;
 
     private int $authorId;
@@ -161,6 +163,22 @@ class News extends ModelAbstract
         $this->createdAt = $createdAt;
     }
 
+    /**
+     * @return string
+     */
+    public function getIntro(): string
+    {
+        return $this->intro;
+    }
+
+    /**
+     * @param string $intro
+     */
+    public function setIntro(string $intro): void
+    {
+        $this->intro = $intro;
+    }
+
     public function loadBySlug($slug) : ?News
     {
         $sql = $this->select();
@@ -168,6 +186,7 @@ class News extends ModelAbstract
         $sql->bindValue('slug', $slug);
         if ($rez = $this->db->get($sql)) {
             $this->title = $rez['title'];
+            $this->intro = $rez['intro'];
             $this->content = $rez['content'];
             $this->authorId = (int)$rez['author_id'];
             $this->createdAt = $rez['created_at'];
@@ -190,6 +209,7 @@ class News extends ModelAbstract
 
             $this->id = (int)$rez['id'];
             $this->title = $rez['title'];
+            $this->intro = $rez['intro'];
             $this->content = $rez['content'];
             $this->authorId = (int)$rez['author_id'];
             $this->createdAt = $rez['created_at'];
@@ -205,18 +225,5 @@ class News extends ModelAbstract
         return null;
 
     }
-    public function loadAll() : ?array
-    {
-        $sql = $this->select();
-        $sql->cols(['*'])->from('news');
-        if ($rez = $this->db->getAll($sql)){
-            $news = [];
-            foreach ($rez as $article){
-                $new = new News();
-                $new->load((int)$article['id']);
-                $news [] = $new;
-            }
-            return $news;
-        } return null;
-    }
+
 }

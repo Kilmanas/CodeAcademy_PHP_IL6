@@ -15,8 +15,8 @@ class News extends ControllerAbstract
 
     public function showAll()
     {
-        $news = new \Model\News();
-        $articles = $news->loadAll();
-        $this->twig->display('news_showall.html.twig', ['articles' => $articles]);
+        $news = new \Model\Collections\News();
+        $news->filter('active', 1);
+        $this->twig->display('news_showall.html.twig', ['articles' => $news->get()]);
     }
 }
