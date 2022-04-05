@@ -34,4 +34,5 @@ class ModelAbstract
         return $this->queryFactory->newDelete();
     }
 
+
 }

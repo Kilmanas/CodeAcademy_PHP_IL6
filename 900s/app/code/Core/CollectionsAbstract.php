@@ -36,4 +36,14 @@ class CollectionsAbstract
         $this->select->bindValue($field, $value);
         return $this;
     }
+    public function limit($limit)
+    {
+        $this->select->limit($limit);
+        return $this;
+    }
+    public function order(array $parameter)
+    {
+        $this->select->orderBy($parameter);
+        return $this;
+    }
 }

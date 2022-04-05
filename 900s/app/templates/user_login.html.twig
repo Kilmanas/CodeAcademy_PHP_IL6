@@ -1,0 +1,24 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Prisijungimas{% endblock %}
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <form method="post" action="check">
+            <div class="row">
+                <div class="col">
+                 <input id="1" type="email" name="email" placeholder="El. paštas">
+                </div>
+                </div>
+
+            <div class="row">
+                <div class="col">
+                <input id="2" type="password" name="password" placeholder="Slaptažodis">
+                </div>
+            </div>
+            <input type="submit" value="Prisijungti">
+        </form>
+    </div>
+{% endblock %}
