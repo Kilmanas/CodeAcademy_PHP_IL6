@@ -8,6 +8,7 @@ class ModelAbstract
     protected QueryFactory $queryFactory;
     protected DB $db;
 
+
     public function __construct()
     {
         $this->queryFactory = new QueryFactory('Mysql');
@@ -33,6 +34,19 @@ class ModelAbstract
     {
         return $this->queryFactory->newDelete();
     }
-
-
+    protected function create(): void
+    {
+        $insert = $this->insert();
+        $insert->into(static::TABLE)->cols($this->data);
+        $this->db->execute($insert);
+    }
+    public function save()
+    {
+        $this->assignData();
+        if (!isset($this->id)) {
+            $this->create();
+        } else {
+            $this->update();
+        }
+    }
 }

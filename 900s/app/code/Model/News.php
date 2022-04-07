@@ -26,6 +26,7 @@ class News extends ModelAbstract
     private string $image;
 
     private string $createdAt;
+    protected const TABLE = 'news';
 
     /**
      * @return int
@@ -223,6 +224,29 @@ class News extends ModelAbstract
         }
 
         return null;
+
+    }
+    public function save()
+    {
+        $this->assignData();
+        if (!isset($this->id)) {
+            $this->create();
+        } else {
+            $this->update();
+        }
+    }
+    protected function assignData(): void
+    {
+
+        $this->data = [
+            'title' => $this->title,
+            'content' => $this->content,
+            'author_id' => $this->authorId,
+            'active' => $this->active,
+            'views' => $this->views,
+            'slug' => $this->slug,
+            'image' => $this->image
+        ];
 
     }
 

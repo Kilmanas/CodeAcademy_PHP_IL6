@@ -178,7 +178,7 @@ class User extends ModelAbstract
         }
     }
 
-    private function create(): void
+    protected function create(): void
     {
         $data = [
             'name' => $this->name,
